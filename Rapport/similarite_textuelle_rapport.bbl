@@ -1,0 +1,40 @@
+\begin{thebibliography}{1}
+
+\bibitem{TFIDFsumup}
+Intelligence artificielle: Résumer un texte grâce au tf idf.
+\newblock \url{https://datascientest.com/tf-idf-intelligence-artificielle}.
+\newblock Accédé le [08-02-2024].
+
+\bibitem{Wordpiece}
+Japanese and korean voice search.
+\newblock
+  \url{https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37842.pdf}.
+\newblock Accédé le [14-03-2024].
+
+\bibitem{BPE}
+Neural machine translation of rare words with subword units.
+\newblock \url{https://aclanthology.org/P16-1162.pdf}.
+\newblock Accédé le [14-03-2024].
+
+\bibitem{etude2015}
+Research-paper recommender systems: a literature survey.
+\newblock
+  \url{https://kops.uni-konstanz.de/entities/publication/861ddd16-fbc6-4ee4-a77f-6bba081041f3}.
+\newblock Accédé le [08-02-2024].
+
+\bibitem{video_embedding}
+Video (min 18) : What are transformer models and how do they work?
+\newblock \url{https://www.youtube.com/watch?v=qaWMOYf4ri8}.
+\newblock Accédé le [14-03-2024].
+
+\bibitem{word2vec}
+Word2vec.
+\newblock \url{https://en.wikipedia.org/wiki/Word2vec}.
+\newblock Accédé le [15-03-2024].
+
+\bibitem{wordpiecehuggingface}
+Wordpiece tokenization.
+\newblock \url{https://huggingface.co/learn/nlp-course/en/chapter6/6}.
+\newblock Accédé le [15-03-2024].
+
+\end{thebibliography}

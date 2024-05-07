@@ -1,0 +1,17 @@
+\babel@toc {french}{}\relax 
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Tokenization, embeddings et similarité}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Normalisation}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Dictionnaire ou tokenization}{3}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Tokenisation basée sur les espaces et la ponctuation}{3}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Tokenisation en sous-mots}{4}{subsubsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.3}Embedding pour les tokens}{5}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Word2vec}{6}{subsubsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.4}Embedding de document basé sur une approche fréquentielle : la méthode TF-IDF}{8}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Indice de similarité entre deux documents}{10}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Lien avec la théorie de l'information}{11}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}limites de la méthode}{11}{subsubsection.2.4.3}%
+\contentsline {section}{\numberline {3}Deep learning et mécanisme d'attention}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Les modèles Transformers : "Attention is all you need"}{11}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Le modèle Bert}{11}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Conclusion}{11}{section.4}%
