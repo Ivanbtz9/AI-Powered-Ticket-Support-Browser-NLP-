@@ -1,0 +1,7 @@
+data/
+Sources/
+*.png
+*.csv
+*.xlsx
+*.index
+.venv_dashboard_assist
