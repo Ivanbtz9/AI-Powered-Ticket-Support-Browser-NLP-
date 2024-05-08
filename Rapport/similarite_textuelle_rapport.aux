@@ -24,44 +24,57 @@
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \babel@aux{french}{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Tokenization, embeddings et similarité}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Tokenization, embeddings et similarité}{3}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Normalisation}{3}{subsection.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Dictionnaire ou tokenization}{3}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Tokenisation basée sur les espaces et la ponctuation}{3}{subsubsection.2.2.1}\protected@file@percent }
 \citation{BPE}
 \citation{Wordpiece}
 \citation{wordpiecehuggingface}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Tokenisation basée sur les espaces et la ponctuation}{4}{subsubsection.2.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Tokenisation en sous-mots}{4}{subsubsection.2.2.2}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces  : Byte Pair Encoding (BPE)}}{4}{algorithm.1}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces  : Wordpiece}}{4}{algorithm.2}\protected@file@percent }
-\citation{video_embedding}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces  : Wordpiece}}{5}{algorithm.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Étapes pour la tokenization}}{5}{figure.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Embedding pour les tokens}{5}{subsection.2.3}\protected@file@percent }
+\citation{openai_tokenizer}
+\citation{video_embedding}
 \citation{word2vec}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Word2vec}{6}{subsubsection.2.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Word2vec du type Skip-Gram }}{7}{figure.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Obtenir un concept de royauté avec Word2vec : King - Man + Woman = Queen }}{8}{figure.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Embedding de document basé sur une approche fréquentielle : la méthode TF-IDF}{8}{subsection.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Tokenization de la réponse de ChatGPT \cite  {openai_tokenizer}}}{6}{figure.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Embedding pour les tokens}{6}{subsection.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Tableau des embeddings en 2d}}{7}{figure.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Projection 2d des embeddings}}{7}{figure.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Word2vec}{7}{subsubsection.2.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Word2vec du type Skip-Gram }}{8}{figure.5}\protected@file@percent }
+\citation{Distributed_Representations_of_Words}
+\citation{Distributed_Representations_of_Words}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Obtenir un concept de royauté avec les embeddings issus des modèles type Word2vec : King + Woman - Man = Queen \cite  {Distributed_Representations_of_Words} }}{9}{figure.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Embedding de phrase basé sur une approche fréquentielle : la méthode TF-IDF}{9}{subsection.2.4}\protected@file@percent }
 \citation{etude2015}
 \citation{TFIDFsumup}
+\citation{TF_IDF_measures}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Lien avec la théorie de l'information}{12}{subsubsection.2.4.1}\protected@file@percent }
+\citation{TF_IDF_measures}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}Indice de similarité entre deux documents}{15}{subsubsection.2.4.2}\protected@file@percent }
+\citation{CosineSimilarity}
 \bibstyle{plain}
 \bibdata{bibliographie}
-\bibcite{TFIDFsumup}{{1}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Indice de similarité entre deux documents}{10}{subsubsection.2.4.1}\protected@file@percent }
-\bibcite{Wordpiece}{{2}{}{{}}{{}}}
-\bibcite{BPE}{{3}{}{{}}{{}}}
-\bibcite{etude2015}{{4}{}{{}}{{}}}
-\bibcite{video_embedding}{{5}{}{{}}{{}}}
-\bibcite{word2vec}{{6}{}{{}}{{}}}
-\bibcite{wordpiecehuggingface}{{7}{}{{}}{{}}}
+\bibcite{CosineSimilarity}{{1}{}{{}}{{}}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3}Limites de la méthode}{18}{subsubsection.2.4.3}\protected@file@percent }
+\bibcite{Distributed_Representations_of_Words}{{2}{}{{}}{{}}}
+\bibcite{TF_IDF_measures}{{3}{}{{}}{{}}}
+\bibcite{TFIDFsumup}{{4}{}{{}}{{}}}
+\bibcite{Wordpiece}{{5}{}{{}}{{}}}
+\bibcite{BPE}{{6}{}{{}}{{}}}
+\bibcite{openai_tokenizer}{{7}{}{{}}{{}}}
+\bibcite{etude2015}{{8}{}{{}}{{}}}
+\bibcite{video_embedding}{{9}{}{{}}{{}}}
+\bibcite{word2vec}{{10}{}{{}}{{}}}
+\bibcite{wordpiecehuggingface}{{11}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}Lien avec la théorie de l'information}{11}{subsubsection.2.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3}limites de la méthode}{11}{subsubsection.2.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Deep learning et mécanisme d'attention}{11}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Les modèles Transformers : "Attention is all you need"}{11}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Le modèle Bert}{11}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{11}{section.4}\protected@file@percent }
-\newlabel{LastPage}{{}{11}{}{page.11}{}}
-\xdef\lastpage@lastpage{11}
-\xdef\lastpage@lastpageHy{11}
-\gdef \@abspage@last{11}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Deep learning et mécanisme d'attention}{19}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Les modèles Transformers : "Attention is all you need"}{19}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Le modèle Bert}{19}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{19}{section.4}\protected@file@percent }
+\newlabel{LastPage}{{}{19}{}{page.19}{}}
+\xdef\lastpage@lastpage{19}
+\xdef\lastpage@lastpageHy{19}
+\gdef \@abspage@last{19}

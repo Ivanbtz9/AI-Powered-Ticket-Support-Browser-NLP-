@@ -1,4 +1,20 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{CosineSimilarity}
+Cosine similarity.
+\newblock \url{https://www.learndatasci.com/glossary/cosine-similarity/}.
+\newblock Accédé le [08-05-2024].
+
+\bibitem{Distributed_Representations_of_Words}
+Distributed representations of words and phrases and their compositionality.
+\newblock \url{https://arxiv.org/pdf/1310.4546}.
+\newblock Accédé le [7-05-2024].
+
+\bibitem{TF_IDF_measures}
+An information-theoretic perspective of tf–idf measures.
+\newblock
+  \url{https://ccc.inaoep.mx/~villasen/index_archivos/cursoTL/articulos/Aizawa-tf-idfMeasures.pdf}.
+\newblock Accédé le [08-05-2024].
 
 \bibitem{TFIDFsumup}
 Intelligence artificielle: Résumer un texte grâce au tf idf.
@@ -15,6 +31,11 @@ Japanese and korean voice search.
 Neural machine translation of rare words with subword units.
 \newblock \url{https://aclanthology.org/P16-1162.pdf}.
 \newblock Accédé le [14-03-2024].
+
+\bibitem{openai_tokenizer}
+Openai tokenizer.
+\newblock \url{https://platform.openai.com/tokenizer}.
+\newblock Accédé le [7-05-2024].
 
 \bibitem{etude2015}
 Research-paper recommender systems: a literature survey.
@@ -33,8 +54,8 @@ Word2vec.
 \newblock Accédé le [15-03-2024].
 
 \bibitem{wordpiecehuggingface}
-Wordpiece tokenization.
-\newblock \url{https://huggingface.co/learn/nlp-course/en/chapter6/6}.
+Wordpiece tokenization : \\
+  \url{https://huggingface.co/learn/nlp-course/en/chapter6/6}.
 \newblock Accédé le [15-03-2024].
 
 \end{thebibliography}

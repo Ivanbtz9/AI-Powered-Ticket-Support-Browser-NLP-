@@ -32,7 +32,7 @@ if __name__ == '__main__':
     server = app.server
 
     #Load data
-    DATA_PATH = os.path.join(os.getcwd(),"hotline_data/hotline_data_21_24.csv") #"hotline_data/data_hotline_2023.csv"
+    DATA_PATH = os.path.join(os.path.dirname(os.getcwd()),"data/hotline_data/hotline_data_21_24.csv") 
     columns = ['request_n', 'start_date', 'en_question', 'answer', 'service', 'part_n', 'model', 'serial_n'] #en_question
     tickets_assist = pd.read_csv(DATA_PATH,encoding='utf-8')
 

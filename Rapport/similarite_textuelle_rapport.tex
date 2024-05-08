@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[frenchb]{babel}
 \usepackage{algorithm}
+\usepackage{listings}
 \usepackage{algpseudocode}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -25,6 +26,7 @@
 \usepackage[np]{numprint}
 \usepackage{hyperref}
 \usepackage{url}
+\usepackage{parskip}
 \usepackage{colortbl}
 \usepackage{multirow}
 \usepackage{listings}
@@ -52,7 +54,7 @@
 		\end{center}
 }
 
-\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\Pro}{\mathbb{P}}
 
 \newtheorem{thm}{Théorème}
 \newtheorem{rmq}{Remarque}
@@ -74,6 +76,20 @@
 \newtheorem{csq}{Conséquence}
 \def\di{\displaystyle}
 
+\lstset{
+	language=Python,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{red},
+	commentstyle=\color{green},
+	morecomment=[l][\color{magenta}]{\#},
+	frame=single,
+	breaklines=true,
+	numbers=left,
+	numberstyle=\tiny,
+	tabsize=4
+}
+
 \begin{document}
 	
 	\titlePage % This command creates the custom title page
@@ -81,7 +97,7 @@
 	\newpage 
 	\section{Introduction}\quad\\[-0.5cm]
 	
-	 \par La gestion quotidienne de plus de 500 tickets issus de divers services représente un défi majeur en termes d'efficience opérationnelle pour les employés du Centre Logistique de Pièces de Rechange international (CLPR). L'accès rapide à des informations pertinentes et déjà traitées est crucial pour les équipes métier afin d'optimiser leur réactivité et leur efficacité. Ce projet de fin d'études vise à explorer et développer des méthodes avancées de traitement du langage naturel (NLP) pour créer un indice de similarité entre les données textuelles des tickets. Nous aimerions créer un outil pivot pour faciliter la recherche d'informations pertinentes pour les équipes du support technique. Soit un tableau de bord interactif pour que les utilisateurs puissent consulter efficacement la base de données des tickets Assist et ainsi identifier rapidement les solutions aux problèmes rencontrés.
+	 \par La gestion quotidienne de plus de 500 tickets issus de divers services représente un défi majeur en termes d'efficience opérationnelle pour les employés du Centre Logistique de Pièces de Rechange international (CLPR). L'accès rapide à des informations pertinentes et déjà traitées est crucial pour les équipes métier afin d'optimiser leur réactivité et leur efficacité. Ce projet de fin d'études vise à explorer et développer des méthodes avancées de traitement du langage naturel (NLP). Nous aimerions étudier la similarité entre les données textuelles des tickets issus de leur logiciel Assist. Nous aimerions créer un outil pivot pour faciliter la recherche d'informations pertinentes pour les équipes du support technique. Soit un tableau de bord interactif pour que les utilisateurs puissent consulter efficacement la base de données des tickets Assist et ainsi identifier rapidement les solutions aux problèmes rencontrés.
 	
 	Pour répondre à cet enjeu, il est essentiel de disposer d'une base de données exhaustive des tickets, comprenant la questions et la réponse associées à chaque interaction. Des informations spécifiques telles que les détails techniques des machines concernées, les pièces demandées, ou le service responsable du ticket nous servira de fondement à l'application de filtres avancés sur le tableau de bord.
 	
@@ -90,29 +106,29 @@
 		\item Comment traiter et interpréter des données textuelles complexes pour qu'elles soient intelligibles par des modèles informatiques ? 
 		\item De quelle manière peut-on identifier les correspondances les plus pertinentes entre les demandes actuelles et les tickets passés ? 
 		\item Comment adapter un modèle de Large Language Model (\emph{LLM}) déjà existant pour répondre aux besoins des équipes ? 
-		\item Pourrions-nous faciliter les réponses des équipes à l'aide d'une IA générative ? 
+		\item Pourrions-nous faciliter les réponses des équipes à l'aide d'une IA générative ? \\
 	\end{itemize}
 	
-	Cette recherche s'inscrit dans un contexte où l'efficacité de la gestion des tickets est directement liée à la qualité du service offert par le CLPR. En développant un outil capable de réduire significativement le temps nécessaire à la recherche d'informations, ce projet entreprend la transformation des opérations quotidiennes en apportant une réponse concrète aux défis posés par le volume et la complexité des tickets traités. Nous souhaiterions ainsi améliorer des performances opérationnelles du CLPR mais aussi développer les connaissances dans le domaine du traitement automatique du langage naturel appliqué aux environnements professionnels.	
+	Cette recherche s'inscrit dans un contexte où l'efficacité de la gestion des tickets est directement liée à la qualité du service offert par le CLPR. En développant un outil capable de réduire significativement le temps nécessaire à la recherche d'informations, ce projet entreprend la transformation des opérations quotidiennes en apportant une réponse concrète aux défis posés par le volume et la complexité des tickets traités. Nous souhaiterions ainsi améliorer des performances opérationnelles du CLPR mais aussi développer les connaissances dans le domaine du traitement automatique du langage naturel appliqué à un environnement professionnel.	
 
 	
 	\section{Tokenization, embeddings et similarité}
-	Les données textuelles dans leur forme brute, ne sont pas directement exploitables par les modèles de machine learning. Pour permettre la classification de textes, la génération de résumé, ou encore l'analyse de similarité entre deux documents, il est essentiel de prétraiter ces données afin de les convertir en vecteurs numériques. Nous décrirons ici les principales étapes de ce prétraitement. La première étape consiste en la normalisation des données, cette étape est cruciale car elle permet de nettoyer les données. Comment pouvons nous obtenir un texte sous une forme canonique ? Vient ensuite la segmentation (Tokenization) qui consiste à structurer les données pour créer un dictionnaire de valeurs textuelles. Cette étape est particulièrement complexe et peut varier selon les méthodes employées. Nous examinerons certains aspects sans rentrer explicitement dans les détails de toutes les méthodes existantes. La dernière partie consiste en la vectorisation, l'encodage des données (embedding) pour obtenir une représentation vectorielle de chaque Token. Nous finirons par présenter la similarité cosinus qui est une métrique permettant d'identifier la proximité entre deux vecteurs.
+	Les données textuelles dans leur forme brute, ne sont pas directement exploitables par les modèles de machine learning. Pour permettre la classification de textes, la génération de résumé, ou encore l'analyse de similarité entre deux documents, il est essentiel de prétraiter ces données afin de les convertir en vecteurs numériques. Nous décrirons dans cette première partie les principales étapes de ce prétraitement. Commençons par la normalisation des données, cette étape est cruciale car elle permet de nettoyer les données. Comment pouvons nous obtenir un texte sous une forme canonique ? Vient ensuite la segmentation (Tokenization) qui consiste à structurer les données pour créer un dictionnaire de valeurs textuelles. Cette étape est particulièrement complexe et peut varier selon les méthodes employées. Nous examinerons certains aspects sans rentrer explicitement dans les détails de toutes les méthodes existantes. La dernière partie consiste en la vectorisation, l'encodage des données (embedding) pour obtenir une représentation vectorielle de chaque Token. Nous finirons par présenter la similarité cosinus qui est une métrique permettant d'identifier la proximité entre deux vecteurs.
 	\subsection{Normalisation}
 	La normalisation des données joue un rôle essentiel dans la réduction de la taille du vocabulaire. La conversion de tout le texte en minuscules, par exemple, permet d'unifier les variantes d'un même mot (comme "Hello" et "hello"). Cette opération peut cependant masquer certains sens implicites ou nuances. Prenons l'exemple de : "I am waiting for my parts URGENTLY". Le passage en minuscules dilue le sentiment d'urgence et l'impatience du message envoyé par notre client. Par conséquent, une connaissance métier des données est importante pour la normalisation des données textuelles.  
 	
 	 Lors de la normalisation, il peut être judicieux d'éliminer les URL, les adresses e-mail, et les caractères non reconnus. Il convient également de supprimer les sauts de ligne et les espaces en trop. Nous pouvons aussi gérer les répétitions et effets de style ("coooool" ou "Hiiiii" ou encore "\$alut"). Il est crucial de trouver un juste équilibre entre une normalisation excessive, qui pourrait occulter certains sens et une normalisation insuffisante qui serait susceptible d'augmenter inutilement la taille du dictionnaire de référence.
 	\subsection{Dictionnaire ou tokenization}
 	
-	L'étape de tokenisation que nous avons explorée en début de recherche, s'est révélée bien plus variée en termes de méthodologies que nous ne l'avions imaginée. La tokenisation consiste à créer un vocabulaire de référence pour notre corpus en associant à chaque élément textuel (mot, lettre, séquence de caractères, ...) un identifiant numérique. Par exemple : $\{$"hello":243, "engine":412, "mlt":515, ..., "?":715$\}$ 
+	L'étape de tokenisation que nous avons explorée en début de recherche, s'est révélée bien plus variée en termes de méthodologies que nous ne l'avions imaginée. La tokenisation consiste à créer un vocabulaire de référence pour notre corpus en associant à chaque élément textuel (mot, lettre, séquence de caractères, ...) un identifiant numérique. Par exemple via un dictionnaire python: $\{$"hello":243, "engine":412, "mlt":515, ..., "?":715$\}$ 
 	
 
 	\subsubsection{Tokenisation basée sur les espaces et la ponctuation}
-	Une méthode élémentaire de tokenisation repose sur l'utilisation des espaces et des caractères de ponctuation pour segmenter le texte en tokens. Cette technique présente des limites en revanche, notamment son incapacité à reconnaître correctement des éléments comme "don't" ou "U.S.A", ces chaînes de caractères spécifiques ne pouvant pas être capturées par cette approche trop simpliste.
+	Une méthode élémentaire de tokenisation repose sur l'utilisation des espaces et des caractères de ponctuation pour segmenter le texte en tokens. Cette technique présente des limites en revanche, notamment son incapacité à reconnaître correctement des groupes de mots comme "don't" ou "U.S.A", ces chaînes de caractères spécifiques ne pouvant pas être capturées par cette approche trop simpliste.
 	
 	\subsubsection{Tokenisation en sous-mots}
 	
-	La tokenisation en sous-mots attribue un identifiant numérique à chaque mot fréquent tout en décomposant les mots les plus rares en segments plus petits. Par exemple, le mot "hugely" serait découpé en deux tokens "huge" et le sufixe "\#ly". Cette méthode est inspirée de la théorie de l'information et nous rappelle le codage de Huffman étudié dans le cadre de nos cours. Un exemple notable de cette approche est le Byte Pair Encoding (BPE) \cite{BPE}. Voici une explication de l'algorithme : 
+	La tokenisation en sous-mots attribue un identifiant numérique à chaque mot fréquent tout en décomposant les mots les plus rares en segments plus petits. Par exemple, le mot "hugely" serait découpé en deux tokens "huge" et le sufixe "\#ly". Cette méthode est inspirée de la théorie de l'information étudiée dans le cadre de nos cours, l'idée étant d'utiliser un découpage à longueur variable pour représenter un mot ou une expression. Un exemple notable de cette approche est le Byte Pair Encoding (BPE) \cite{BPE}. Voici une explication de l'algorithme : 
 	
 
 \begin{algorithm}
@@ -138,94 +154,129 @@
 			\State \textbf{Finalisation :} Le processus se termine lorsque la taille du vocabulaire atteint sa limite prédéfinie, incluant une diversité de mots entiers et de sous-mots.
 		\end{algorithmic}
 	\end{algorithm}
+
+
 	
-	Voici quelques éléments possibles pour expliquer la partie itérative de la méthode Wordpiece, le code de cet algorithme n'étant pas opensource, il s'agit ici d'une interprétation proposé sur le site d'Huggingface \cite{wordpiecehuggingface}. Notons $\mathcal{C}$ un corpus de référence connu par le modèle pour tester les scores d'information mutuelle. Soit $\mathcal{D}_n$ le dictionnaire à l'étape $n$ et $T : = \{T_1,T_2,\dots,T_n\}$ l'ensemble des tokens associés. Pour chaque étape $n$, il est possible de définir la fréquence $P_k^n$ du token $k$ dans le corpus $\mathcal{C}$. La formule de l'information mutuelle entre deux tokens consécutifs $T_k,T_l$ dans le corpus $\mathcal{C}$ au temps $n$ est donnée par :
-	$$I_n(T_k,T_l)  = \ln(P_{kl}^n)-\ln(P_k^n)-\ln(P_l^n) = \ln\left(\dfrac{P_{kl}^n}{P_k^n\times P_l^n}\right)$$ 
+	Voici quelques éléments possibles pour expliquer la partie itérative de la méthode Wordpiece, le code de cet algorithme n'étant pas opensource, il s'agit ici d'une interprétation proposé sur le site d'Huggingface \cite{wordpiecehuggingface}. Notons $\mathcal{C}$ le corpus de référence connu par le modèle pour tester les scores d'information mutuelle et ainsi constituer le dictionnaire final. Notons $\mathcal{D}_n = \{T_1,T_2,\dots,T_n\}$ le dictionnaire contenant l'ensemble des $n$ caractères unicode constituant $\mathcal{C}$ listés comme tokens initiaux. Pour chaque étape $i\geq0$ et $k\in [\![1,\dots,n+i]\!] $, il est possible de définir la fréquence $P_k$ du token $T_k$ dans le corpus $\mathcal{C}$. Pour $k,l\in [\![1,\dots,n+i]\!]$, nous noterons $P_{kl}$ la fréquence dans le corpus $\mathcal{C}$ du bigramme $T_kT_l$. La formule de l'information mutuelle entre deux tokens consécutifs $T_k,T_l$  dans le corpus $\mathcal{C}$ au temps $n$ est donnée par :
+	$$I_n(T_k,T_l)  = \ln(P_{kl})-\ln(P_k)-\ln(P_l) = \ln\left(\dfrac{P_{kl}}{P_k\times P_l}\right)$$ 
 	%log-vraisemblance à l'étape $n$ est donnée par :
 	%$$\displaystyle\mathscr{L}_n  = \sum_{k=0}^n\ln(P_k^n)$$  
 	
-	Enfin, pour trouver le token au temps $n+1$, on maximise sur tous les couples de tokens consécutifs possibles à l'étape $n$ en lien avec le corpus $\mathcal{C}$. Par croissance de la fonction logarithme, cela revient à trouver le couple $"T_kT_l"$ avec le meilleur score comme ci dessous :
+	Enfin, pour trouver le token à ajouter pour constituer $\mathcal{D}_{n+i+1}$, on maximise sur tous les couples de tokens consécutifs possibles à l'étape $n$ en lien avec le corpus $\mathcal{C}$. Par croissance de la fonction logarithme, il suffit de trouver le couple $"T_kT_l"$ avec le meilleur score comme ci dessous :
 	
-	$$T_{n+1} = \underset{"T_kT_l" }{Argmax}\left(\dfrac{P_{kl}^n}{P_k^n\times P_l^n}\right)$$
+	$$T_{n+i+1} = \underset{"T_kT_l" }{Argmax}\left(\dfrac{P_{kl}}{P_k\times P_l}\right)$$
 	
 	%$$T_{n+1} = \underset{"T_iT_j" }{Argmax}\left(\ln(P_{ij}^{n+1})+\sum_{k=0}^n\ln(P_k^{n+1})\right)$$
 	
-
-	Comme la méthode BPE la méthode Wordpiece est itérative, elle incrémente d'un élément le vocalulaire à chaque étape. Enfin pour un dictionnaire donné, il est possible de tokenizer une phrase comme sur l'exemple suivant : 
+\begin{rmq}
+	Comme pour la méthode BPE, la méthode Wordpiece est itérative, elle incrémente d'un élément le vocalulaire à chaque étape. Enfin pour un dictionnaire donné, il est possible de donner la tokenisation d'une phrase comme sur l'exemple suivant :
+\end{rmq}
+	 
 	
 	\begin{figure*}[!h]
 		\centering
 		\includegraphics*[scale=0.5]{images/tokenizer.png}
 		\caption{Étapes pour la tokenization}
 	\end{figure*}
+
+\newpage
+
+\begin{rmq}
+	Quand on demande à ChatGPT de nous donner le tokenizer qu'il utilise, il nous répond : \\[1cm]
+	\begin{figure*}[!h]
+		\centering
+		\includegraphics*[scale=0.7]{images/openai_tokenizer.png}
+		\caption{Tokenization de la réponse de ChatGPT \cite{openai_tokenizer}}
+	\end{figure*}
+\end{rmq}
+
+
+
 	
 	\subsection{Embedding pour les tokens}
 
-	Une fois le corpus segmenté en tokens nous obtenons une suite d'identifiants. En revanche, nous n'avons intégré aucun sens sémantique pour le moment, l'objet est de convertir chaque token en une donnée vectorielle qui intégrerait le sens sémantique des mots. Il existe plusieurs méthodes pour obtenir une vectorisation de chaque token, nous présenterons dans cette partie les algorithmes du type "Word2Vec" afin d'avoir une idée globale du fonctionnement de l'étape d'embedding. Cependant, avant de donner une approche profonde sur la méthodologie, nous proposons une expérience fictive pour donner l'intuition sur la vectorisation des tokens \cite{video_embedding}. Cette expérience fictive, inspirée des neurosciences proposerait de placer des électrodes sur le crâne de plusieurs patients afin de mesurer l’activité des différentes zones du cerveau suite à une stimulation auditive. À l’écoute de certains mots, nous pourrions mesurer l’activité cérébrale moyenne en chacune des zones du cerveau. Les réponses électriques issues de ces stimulations auditives pourraient nous renvoyer des vecteurs dans un espace vectoriel multidimensionnelle. Une représentation 2d via une projection, pourrait nous donner une visualisation des mots avec leur sens sémantique. \\[1cm] 
+	Maintenant nous savons comment segmenté un corpus en une liste de tokens, en revanche, nous n'avons intégré aucun sens sémantique pour le moment. L'objet est de convertir chaque token en une donnée vectorielle qui intégrerait le sens sémantique des mots. Il existe de nombreux mécanismes pour obtenir une vectorisation de chaque token, nous présenterons dans cette partie les algorithmes du type "Word2Vec" afin d'avoir une idée plus intuitive du fonctionnement de l'étape d'embedding. Cependant, avant de donner une approche profonde sur la méthodologie, nous proposons une expérience fictive pour donner l'intuition sur la vectorisation des tokens \cite{video_embedding}. Cette expérience fictive, inspirée des neurosciences proposerait de placer des électrodes sur le crâne de plusieurs patients afin de mesurer l’activité des différentes zones du cerveau suite à une stimulation auditive. À l’écoute de certains mots, nous pourrions mesurer l’activité cérébrale moyenne en chacune des zones du cerveau. Les réponses électriques issues de ces stimulations auditives pourraient nous renvoyer des vecteurs dans un espace vectoriel multidimensionnelle. Une représentation 2d via une projection, pourrait nous donner une visualisation des mots avec leur sens sémantique. \\[1cm] 
 	
 
-	\begin{minipage}{1\textwidth}
-		\begin{minipage}{0.45\textwidth}
-			\includegraphics*[scale=0.25]{images/tableau.png}
-		\end{minipage}\hfil\begin{minipage}{0.4\textwidth}
-			\includegraphics*[scale=0.25]{images/2d.png}
+\begin{figure}[!h]  % Utilisez figure au lieu de figure* si vous n'avez pas besoin d'une figure qui s'étend sur deux colonnes.
+	\centering
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[scale=0.3]{images/tableau.png}
+		\caption{Tableau des embeddings en 2d}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[scale=0.3]{images/2d.png}
+		\caption{Projection 2d des embeddings}
 	\end{minipage}
-	
-	\end{minipage}
+\end{figure}
+
+
+
+
+
+
 
 	\subsubsection{Word2vec}
 	
-	Les méthodes de type Word2Vec \cite{word2vec} reposent sur le principe suivant : les mots apparaissant régulièrement à proximité les uns des autres dans un corpus partagent un sens sémantique similaire. Ainsi, ils doivent être représentés par des vecteurs proches les uns des autres selon une certaine métrique (ex : la similarité cosinus). Pour obtenir des représentations vectorielles pour chaque token, nous allons utiliser les poids de la première couche d'un réseau de neurones de type perceptron multicouche entraîné sur des tâches de classification. Le réseaux de neurones est entraîné à prédire une ou plusieurs classes de mots. Nous pouvons utiliser la fonction de perte d'entropie croisée pour ajuster les poids du modèle via la rétropropagation du gradient. Les embeddings obtenus sont généralement de quelques centaines de dimensions et le réseau de neurones entraîné comporte souvent deux à trois couches. Dans le cadre de Word2Vec, les réseaux de neurones utilisés pour l'entraînement des poids sont de deux types :
+	Les méthodes de type Word2Vec \cite{word2vec} reposent sur le principe suivant : les mots apparaissant régulièrement à proximité les uns des autres dans un corpus partagent un sens sémantique similaire. Ainsi, ils doivent être représentés par des vecteurs proches les uns des autres selon une certaine métrique (ex : la similarité cosinus). Pour obtenir des représentations vectorielles pour chaque token, nous allons utiliser la matrice des poids $W_1$ de la première couche d'un réseau de neurones de type MLP entraîné sur des tâches de classification. Le réseaux de neurones est entraîné à prédire un ou plusieurs mots selon la tâche de classification. La fonction de perte d'entropie croisée sert à évaluer les prédictions à travers un coût et permet d'ajuster les poids du modèle via la rétro-propagation du gradient.
+	
+	Les embeddings obtenus sont généralement de quelques centaines de dimensions et le réseau de neurones entraîné comporte souvent deux à trois couches. Dans le cadre des modèles Word2Vec, les tâches d'entraînement pour le réseaux de neurones sont de deux types :
 	\begin{itemize}
 		\item Bag of Words : Pour une fenêtre donnée (ex : 9 mots), on construit un modèle  capable de prédire le token central (ex : 5eme mot). 
-		\item Skip-gram: Pour mot en entrée et une fenêtre de prédiction donné (ex : 4 mots), on construit un modèle capable de prédire les mots environnants du mot initialement donné.
+		\item Skip-gram: Pour un mot en entrée et une fenêtre de prédiction donné (ex : 4 mots), on construit un modèle capable de prédire les mots voisins.
 	\end{itemize}
+\newpage
+	\begin{rmq}
+			Ces techniques d'apprentissage supervisé utilisent le corpus de référence pour ajuster les poids à chaque étape. Le schéma ci-dessous représente un réseau de neurone MLP simple de type Skip-Gram. Via une entrée vectorielle en one-hot encodding, le modèle prédit des probabilités de voisinages. \\
+			
+		
+		\begin{figure*}[!h]
+			\centering
+			\includegraphics*[scale=0.5]{images/skipgram.png}
+			\caption{Word2vec du type Skip-Gram }
+		\end{figure*}
+	\end{rmq}
 	
-	Cette technique d'apprentissage supervisé utilise le corpus de référence pour ajuster les poids à chaque étape. Le schéma ci-dessous représente un réseau de neurone MLP simple de type Skip-Gram. 
-	
-	\begin{figure*}[!h]
-	\centering
-	\includegraphics*[scale=0.5]{images/skipgram.png}
-	\caption{Word2vec du type Skip-Gram }
-\end{figure*}
+
 	
 	
-	En entrée du modèle, nous utilisons une représentation one hot encoding des mots. En sortie du modèle, nous obtenons des probabilités via l'utilisation de la fonction Softmax. Pour une dictionnaire de taille $N$ et $p\geq 100$ neurones dans la couche 1, notons $W_1 \in \mathcal{M}_{pN}$ la matrice des poids associés à la couche 1. Nous retrouvons après entraînement du modèle l'embeddind de chaque mot via le produit matriciel : $W_1V_k$ ($V_k$ est la représentation one hot encoding du mot k).\\   
+	En entrée du modèle, nous utilisons une représentation one-hot encoding des mots, en sortie du modèle, nous obtenons des probabilités via l'utilisation de la fonction Softmax. Pour une dictionnaire de taille $N$ et $p\geq 100$ neurones dans la première couche du réseau, notons $W_1 \in \mathcal{M}_{N,p}(\R)$ la matrice des poids associés à la couche 1. Après entraînement du modèle, l'embeddind de chaque mot se retrouve via le produit matriciel : $V_kW_1 \in \mathcal{M}_{1,p}(\R)$ ($V_k\in\mathcal{M}_{1,N}(\R)$ est la représentation one-hot encoding du mot k).  
 	
-	Pour l'entraînement du modèle de type Skip Gram ci dessus, sur un corpus  de référence (ex : $(W_i)_i$ une suite de mots) avec un Batch Size  $T \geq 1$ et une fenêtre de référence $c\geq2$, la fonction de coût à minimiser avec l'ajustement des poids est la suivante :  
+	Pour l'entraînement du modèle de type Skip Gram ci dessus, sur un corpus  de référence (ex : $(w_i)_i$ une suite de mots), avec un Batch Size  $T \geq 1$ et une fenêtre de référence $c\geq2$, la fonction de coût à minimiser par ajustement itératif des poids $(W_1,W_2,\dots,W_n)$ est la suivante :  
 	
-	$$\displaystyle\mathcal{L}oss = \dfrac{1}{T}\sum_{t=1}^{T}\sum_{\underset{j\neq 0}{-c\leq j \leq c}} \ln(p(w_{t+j}|w_t))$$
+	$$\displaystyle\mathcal{L}oss(W_1,W_2,\dots,W_n) = \dfrac{1}{T}\sum_{t=1}^{T}\sum_{\underset{j\neq 0}{-c\leq j \leq c}} \ln(p(w_{t+j}|w_t))$$
 	
 	\noindent Avec les mots $w_{t+j}, w_{t}$ associés respectivement aux tokens $T_k, T_l$ on a :
-	 $$\displaystyle p(w_{t+j}|w_t) = p(T_k|T_l) = \dfrac{\exp(Output\_layer2(V_l)_k)}{\sum_{i=1}^{N}\exp(Output\_layer2(V_l)_i)}$$
+	 $$ p(w_{t+j}|w_t) = p(T_k|T_l) = \dfrac{\displaystyle\exp\big(Layer_n(Layer_{n-1}(\dots Layer_1(V_l)))_k\big)}{\displaystyle\sum_{i=1}^{N}\exp\big(Layer_n(Layer_{n-1}(\dots Layer_1(V_l)))_i\big)}$$
 	
 	
 	\begin{rmq}
-		Les méthodes Word2vec ont perdu en popularité depuis l'arrivée des réseaux de neurone avec des mécanismes d'attention type Transformers. Ces nouveaux modèles récupèrent mieux le sens sémantique des mots, ainsi mous privilégierons nos recherches sur ce type de technologie. 
+		Les méthodes Word2vec ont perdu en popularité depuis l'arrivée des réseaux de neurones type Transformers et l'emploi de tables d'embeddings qui se forgent au moment de l'entraînement du modèle. Les tables d'embeddings sont ainsi des poids aléatoirement initialisés, ils évoluent ensuite au cours de la phase d'apprentissage. Ces nouveaux modèles récupèrent mieux le sens sémantique des mots aux travers des embeddings construits. 
 	\end{rmq}
 
 		\begin{figure*}[!h]
 		\centering
 		\includegraphics*[scale=0.35]{images/reine.png}
-		\caption{Obtenir un concept de royauté avec Word2vec : King - Man + Woman = Queen }
+		\caption{Obtenir un concept de royauté avec les embeddings issus des modèles type Word2vec : King + Woman - Man = Queen \cite{Distributed_Representations_of_Words} }
 	\end{figure*}
 	
 	
-	\subsection{Embedding de document basé sur une approche fréquentielle : la méthode TF-IDF}
+	\subsection{Embedding de phrase basé sur une approche fréquentielle : la méthode TF-IDF}
+	
+	Le premier objectif de ce projet serait de construire un moteur de recherche basé sur les questions clients. Nous aimerions être en mesure de comparer chaque nouvelle question client avec les questions clients du passé. Pour cela il faut trouver une méthodologie permettant de plonger l'information d'une phrase entière dans un $\R$ espace vectoriel. La méthode TF-IDF, acronyme de "Term Frequency-Inverse Document Frequency", constitue une technique fondamentale en recherche d'information appliquée aux données textuelles. Utilisée principalement par les moteurs de recherche ces dernières années, cette méthode évalue la pertinence d'un document en fonction de l'occurrence d'un terme, d'une expression, ou d'un ensemble de termes. Initialement conçue pour améliorer la pertinence des résultats de recherche internet en lien avec une requête spécifique, nous adopterons dans un premier temps cette méthode afin de classer les questions antérieures au regard des nouvelles problématiques de nos clients.\\
+	
+	Le principe de la méthode TF-IDF repose sur une mesure statistique attribuant à chaque terme d'un document (ou "token") un poids donné par le produit de sa fréquence dans le document donné et le logarithme de son importance inverse au sein du corpus d'apprentissage. Ainsi, pour chaque question antérieure, l'importance d'un terme est calculée selon sa fréquence dans cette question et sa distribution dans l'ensemble du corpus initial. Le corpus de référence noté $Q : = \{q_1,q_2,\dots,q_N\}$ englobe toutes les questions passées. Le choix d'un tokenizer nous donnera pour l'ensemble des questions $Q$ un dictionnaire de référence, celui-ci inclut tous les mots ou expressions utilisés dans le corpus, il correspond à l'ensemble des Tokens que nous noterons $T : = \{T_1,T_2,\dots,T_K\}$.
+	
+	Avec nos notations un document sera assimilé à un vecteur de $\R^K$. Dans ce cadre, l'information contenue dans chaque interrogation client (un document) est convertie en vecteur, ceci en mettant l'accent sur les termes et leur pertinence, indépendamment de leur position dans le texte. Par la suite, notre étude s'attachera également à explorer d'autres méthodes de vectorisation de documents plus sophistiquées.
+	
+	Avant de détailler le calcul des coefficients de la matrice des poids de référence, il convient de mentionner une étude de 2015 \cite{etude2015} qui estimait qu'un grand nombre des systèmes de recommandation basés sur le texte s'appuyaient sur la méthode TF-IDF. Cette méthode offre également des perspectives intéressantes pour la synthèse de textes. Cela se fait par la sélection des phrases les plus significatives d'un corpus, cette application spécifique ne sera pas abordée dans le cadre de notre projet mais cet article \cite{TFIDFsumup} peut vous donner plus de renseignements.
+	
+	Abordons maintenant l'explication détaillée de la méthode TF-IDF, en mettant l'accent sur le calcul des poids attribués à chaque terme (ou "token") dans un document. La méthode se divise en deux composantes principales : la fréquence du terme (TF) et la log-fréquence inverse du document (IDF). Nous noterons dans la suite $P\in \mathcal{M}_{N,K}(\R)$ la matrice des poids.\\
 	
 	
-	La méthode TF-IDF, acronyme de Term Frequency-Inverse Document Frequency, constitue une technique fondamentale en recherche d'information appliquée aux données textuelles. Utilisée principalement par les moteurs de recherche, cette méthode évalue la pertinence d'un document en fonction de l'occurrence d'un terme, d'une expression, ou d'un ensemble de termes. Initialement conçue pour améliorer la pertinence des résultats de recherche internet en lien avec une requête spécifique, nous adopterons dans un premier temps cette méthode afin de classer les questions antérieures au regard des nouvelles problématiques de nos clients.\\
-	
-	Le principe de la méthode TF-IDF repose sur une mesure statistique attribuant à chaque terme d'un document (ou "token") un poids donné par le produit de sa fréquence dans le document donné et le logarithme de son importance inverse au sein du corpus d'apprentissage. Ainsi, pour chaque question antérieure, l'importance d'un terme est calculée selon sa fréquence dans cette question et sa distribution dans l'ensemble du corpus initial. Le corpus de référence noté $D : = \{d_1,d_2,\dots,d_N\}$ englobe tous des documents, soit l'ensemble des questions antérieures. Le dictionnaire de référence inclut tous les mots ou expressions utilisés dans le corpus, celui-ci correspond à l'ensemble des Tokens que nous noterons $T : = \{T_1,T_2,\dots,T_K\}$.\\
-	
-	Cette approche nous permet de représenter un document sous la forme d'un vecteur dans un espace de grande dimension. Avec nos notations un document est assimilé à un vecteur de $\R^K$. Dans ce cadre, l'information contenue dans chaque interrogation de client (un document) est convertie en vecteur, ceci en mettant l'accent sur les termes et leur pertinence, indépendamment de leur position dans le texte. Par la suite, notre étude s'attachera également à explorer d'autres méthodes de vectorisation de documents plus sophistiquées.\\
-	
-	Avant de détailler le calcul des coefficients de la matrice des poids de référence, il convient de mentionner une étude de 2015 \cite{etude2015} qui estimait qu'un grand nombre des systèmes de recommandation basés sur le texte s'appuyaient sur la méthode TF-IDF. Cette méthode offre également des perspectives intéressantes pour la synthèse de textes. Cela se fait par la sélection des phrases les plus significatives d'un corpus, cette application spécifique ne sera pas abordée dans le cadre de notre projet mais cet article \cite{TFIDFsumup} peut vous donner plus de renseignements.\\
-	
-	Nous abordons maintenant l'explication détaillée de la méthode TF-IDF, en mettant l'accent sur le calcul des poids attribués à chaque terme (ou "token") dans un document. La méthode se divise en deux composantes principales : la fréquence du terme (TF) et la fréquence inverse du document (IDF). Nous noterons dans la suite $P\in \mathcal{M}_{N,K}(\R)$ la matrice des poids.\\
-	
-	
-	Soient $d_i\in D$ et $T_j\in T$, on a $P_{i,j} = TF_{i,j}\times IDF_j$
+	Soient $q_i\in Q$ et $T_j\in T$, on a $P_{i,j} = TF_{i,j}\times IDF_j$
 	$$P = \begin{pmatrix}
 		P_{1,1} & P_{1,2} & \cdots & P_{1,K} \\
 		P_{2,1} & P_{2,2} & \cdots & P_{2,K} \\
@@ -236,21 +287,28 @@
 	\begin{enumerate}
 		\item Fréquence du Terme (TF) :\\
 		
-		Cette composante mesure la fréquence d'un terme $T_j$ dans un document donné. La fréquence est calculée selon la formule suivante : 
+		Cette composante mesure la fréquence d'un terme $T_j$ dans un document $i$ donné. La fréquence est calculée selon la formule suivante : 
 		
-		$$  TF_{i,j} = \dfrac{\#\{t\in d_i ~|~ t = T_j\}}{\displaystyle\sum_{k=1}^{K}\#\{t\in d_i ~|~ t = T_k\}}$$
+		$$  TF_{i,j} = \dfrac{\#\{t\in q_i ~|~ t = T_j\}}{\displaystyle\sum_{k=1}^{K}\#\{t\in q_i ~|~ t = T_k\}}$$
 		
-		Cette formule permet d'attribuer un poids plus élevé aux termes qui apparaissent fréquemment dans un document, reflétant ainsi leur importance relative dans ce contexte spécifique.
+		
+
+		La fréquence d'un token dans la question permet d'attribuer un poids plus élevé aux tokens qui apparaissent fréquemment dans celle-ci, reflétant ainsi leur importance relative dans ce contexte spécifique.\\
+		
+		\begin{rmq}
+		L'appartenance d'un token $t$ à une question $q$ sous entend une tokenisation de la question en amont. Pour simplifier la lecture nous avons fait le choix de noter : "$t\in q$" ci-dessus au lieux de : "$t\in Tokenisation(q)$". \\ 
+		\end{rmq}
+		
 		
 		\item Fréquence Inverse du Document (IDF) : \\
 		
 		Cette composante vise à diminuer le poids des termes qui apparaissent trop fréquemment dans l'ensemble du corpus, elle est calculée par la formule suivante :
-		$$  IDF_{j} = \ln\left(\dfrac{N}{\sum_{i=1}^{N}\mathbb{1}_{\{T_j \in d_i\}}}\right)$$ 
+		$$  IDF_{j} = \ln\left(\dfrac{N}{\sum_{i=1}^{N}\mathbb{1}_{\{T_j \in q_i\}}}\right)$$ 
 		
-		Ainsi, un terme rare dans l'ensemble du corpus, mais fréquent dans certains documents, se verra attribuer un poids plus élevé, tandis que les termes communs à de nombreux documents auront un poids réduit.
+		Ainsi, un terme rare dans l'ensemble du corpus aura un poids IDF plus élevé, tandis que les termes communs à de nombreux documents auront un poids IDF réduit.\\
 
 		\begin{rmq}
-			Le terme $\dfrac{N}{\sum_{i=1}^{N}\mathbb{1}_{\{T_j \in d_i\}}}$ est compris entre $1$ et $N$. Donc $0\leq IDF_{j} \leq \ln(N)$.\\
+			Le terme $\dfrac{N}{\sum_{i=1}^{N}\mathbb{1}_{\{T_j \in q_i\}}}$ est compris entre $1$ et $N$. Donc $0\leq IDF_{j} \leq \ln(N)$.\\
 			
 			Si le token est présent dans chaque document on a : $IDF_{j} = 0$.\\
 			Si le token est présent dans un unique document on a : $IDF_{j} = \ln(N)$  
@@ -259,23 +317,230 @@
 	\end{enumerate}
 	
 	L'efficacité de la méthode TF-IDF repose sur son aptitude à équilibrer l'importance des termes en fonction de leur fréquence dans un document particulier et leur unicité dans l'ensemble du corpus. Les termes rares au niveau du corpus mais fréquents dans un document spécifique reçoivent un poids élevé, ce qui permet de valoriser leur pertinence spécifique. À l'inverse, les mots très communs, tels que les prépositions ("a", "the", "I", ...) ou les formules de politesse ("hello", "hi",...)  n'apportent pas d'information significative sur le contenu du document, ils sont pénalisés par un poids réduit. Pour chaque terme dans un document, le poids TF-IDF est calculé comme le produit de TF et IDF. Cette opération donne un poids qui caractérise l'importance relative du terme dans le contexte du document par rapport à l'ensemble du corpus. En fin de compte, nous obtenons une matrice de poids où les lignes représentent les documents du corpus initial et les colonnes les tokens. 
-		
-	\subsubsection{Indice de similarité entre deux documents}
-	Nous avons vu plusieurs manières pour convertir des données textuelles en vecteur. L'objet de cette partie est de revenir sur la notion de proximité sémantique entre les mots ou encore les documents. Quelle métrique pourrions nous employer afin d'obtenir un indice de similarité entre des mots, des documents ? Nous profiterons des propriétés géométriques des espaces euclidiens pour présenter la similarité cosinus. 
+	
 	\subsubsection{Lien avec la théorie de l'information}
 	
-	\subsubsection{limites de la méthode}
+	La méthode TF-IDF est souvent présentée comme une méthode empirique avec de nombreuses variantes dans sa mise en pratique. En s'inspirant de l'article \textit{"An information-theoretic perspective of Tf-Idf"} \cite{TF_IDF_measures} et par nos connaissances de la théorie de l'information, nous allons proposer une justification mathématiques pour le calcul des poids vu précédemment. Commençons par définir certains objets mathématiques iconiques de la théorie de l'information :
+	
+	\begin{defi}\hfil\\
+		\begin{enumerate}
+			\item Soit $\mathcal{X},\mathcal{Y}$ deux ensembles discrets, tels  que $\mathcal{X}\times \mathcal{Y}$ soit muni d'une mesure de probabilité marginale $P(x_i,y_j)$ qui nous donne respectivement des mesures de probabilités sur $\mathcal{X}$ et $\mathcal{Y}$ telles que : 
+			$$P(x_i) = \sum_{y_j\in \mathcal{Y}}P(x_i,y_j) \ ,\ P(y_j) = \sum_{x_i\in \mathcal{X}}P(x_i,y_j)$$ 
+			\item Pour tout élément $x_i\in \mathcal{X}$, la \textit{quantité d'information} est définie par : $\ln\left(\frac{1}{P(x_i)}\right) = -\ln\left(P(x_i)\right)$.
+			\item Soit $X,Y$ deux variables aléatoires définies sur un espace probabilisé $(\Omega,\mathscr{A},\Pro)$ à valeur respectivement dans $\mathcal{X}$ et dans $\mathcal{Y}$, dont la loi du couple $(X,Y)$ s'identifie à la mesure de probabilité jointe sur $\mathcal{X}\times \mathcal{Y}$ vue précédemment : 
+			$$\Pro(X = x_i, Y= y_j) = P(x_i,y_j) \ ,\ \Pro(X = x_i) = P(x_i) \ ,\ \Pro(Y = y_j) = P(y_j)$$
+			
+			\begin{itemize}
+				\item On définit l'\textit{entropie} (self-entropie) de la variable aléatoire $X$ par la formule suivante : 
+				$$H(X) = - \sum_{x_i\in \mathcal{X}}\Pro(X=x_i)\ln(\Pro(X=x_i)) = - \sum_{x_i\in \mathcal{X}}P(x_i)\ln(P(x_i))$$
+				\item On définit l'\textit{entropie croisée} (cross-entropie) du couple de variables aléatoires $(X,Y)$ par la formule suivante : 
+				$$H(X,Y) = - \sum_{x_i\in \mathcal{X}}\sum_{y_j\in \mathcal{Y}}P(x_i,y_j)\ln(P(x_i,y_j))$$
+				\item On définit l'\textit{entropie conditionnelle} de la variable $X$ sachant la variable $Y$ par la formule suivante : 
+				$$H(X|Y) = -\sum_{y_j\in \mathcal{Y}} P(y_j)\sum_{x_i\in \mathcal{X}}P(x_i|y_j)\ln(P(x_i|y_j))$$
+			\end{itemize}
+		\begin{rmq}
+			L'entropie reflète le degré d'incertitude (le désordre) d'une variable aléatoire face à ses réalisations possibles. Pour une variable aléatoire constante, l'entropie est nulle. Pour une variable aléatoire $Z$ discrète avec $N$ états équidistribués (loi uniforme) on a :
+			$$H(Z) = - \sum_{i=1}^{N}\Pro(Z=z_i)\ln(\Pro(Z=z_i)) = - \sum_{i=1}^{N}\frac{1}{N}\ln\left(\frac{1}{N}\right) = \ln(N)$$
+			%Un script python modélisant des valeurs d'entropie pour des exemples de variables aléatoires discrètes est disponible avec ce rapport.
+		\end{rmq}
+			\item L'\textit{information mutuelle mutuelle entre deux états} $x_i,y_j$ est donnée par la formule : $$\ln\left(\dfrac{P(x_i,y_j)}{P(x_i)P(y_j)}\right)$$
+			\begin{rmq}
+				En cas d'indépendance des évènements $\{X=x_i\}$ et $\{Y=y_j\}$, l'information mutuelle entre les deux états est nulle.  
+			\end{rmq}
+		
+		\item L'\textit{information mutuelle mutuelle entre deux variables aléatoires} $X$ et $Y$ est donnée par la formule :
+		
+		\begin{align*}
+			I(X,Y) &= \sum_{x_i\in \mathcal{X}}\sum_{y_j\in \mathcal{Y}}P(x_i,y_j)\ln\left(\dfrac{P(x_i,y_j)}{P(x_i)P(y_j)}\right)\\
+			 &= \sum_{x_i\in \mathcal{X}}\sum_{y_j\in \mathcal{Y}}P(x_i,y_j)\ln\left(P(x_i,y_j)\right) - \sum_{x_i\in \mathcal{X}}\ln\left(P(x_i)\right)\sum_{y_j\in \mathcal{Y}}P(x_i,y_j) - \sum_{y_j\in \mathcal{Y}}\ln\left(P(y_j)\right)\sum_{x_i\in \mathcal{X}}P(x_i,y_j)\\
+			 &= - \sum_{x_i\in \mathcal{X}}\ln\left(P(x_i)\right)P(x_i) - \sum_{y_j\in \mathcal{Y}}\ln\left(P(y_j)\right)P(y_j) + \sum_{x_i\in \mathcal{X}}\sum_{y_j\in \mathcal{Y}}P(x_i,y_j)\ln\left(P(x_i,y_j)\right)\\
+			 &=  H(X) +H(Y) -H(X,Y) 
+		\end{align*}
+	
+	or 
+		\begin{align*}
+			H(X)-H(X,Y) &= -\sum_{x_i\in \mathcal{X}}P(x_i)\ln\left(P(x_i)\right) + \sum_{x_i\in \mathcal{X}}\sum_{y_j\in \mathcal{Y}}P(x_i,y_j)\ln\left(P(x_i,y_j)\right)\\
+			&=  -\sum_{x_i\in \mathcal{X}}\sum_{y_j\in \mathcal{Y}}P(x_i,y_j)\ln\left(P(x_i)\right) + \sum_{x_i\in \mathcal{X}}\sum_{y_j\in \mathcal{Y}}P(x_i,y_j)\ln\left(P(x_i,y_j)\right)\\
+			&=  \sum_{x_i\in \mathcal{X}}\sum_{y_j\in \mathcal{Y}}P(x_i,y_j)\ln\left(\dfrac{P(x_i,y_j)}{P(x_i)}\right) = \sum_{x_i\in \mathcal{X}}\sum_{y_j\in \mathcal{Y}}P(y_j|x_i)P(x_i)\ln\left(\dfrac{P(y_j|x_i)P(x_i)}{P(x_i)}\right)\\
+			&= \sum_{x_i\in \mathcal{X}}P(x_i)\sum_{y_j\in \mathcal{Y}}P(y_j|x_i)\ln\left(P(y_j|x_i)\right)\\
+			&= -\sum_{x_i\in \mathcal{X}}P(x_i)H(Y|X=x_i)\\
+			&= - H(Y|X)
+		\end{align*}
+	
+	de même on trouver que 
+	
+	\begin{align*}
+		H(Y)-H(X,Y) &= - H(X|Y)
+	\end{align*}
+\newpage
+	
+	Enfin 
+		
+	\begin{align*}
+		I(X,Y) &= H(X) +H(Y) - H(X,Y) =  H(X) - H(X|Y) = H(Y) - H(Y|X)
+	\end{align*}
+			
+	\begin{rmq}
+		L'information mutuelle entre deux variables aléatoires est une valeur symétrique : $I(X,Y) = I(Y,X)$
+	\end{rmq}
+	
+		\end{enumerate}
+	\end{defi} 
+	
+	Cherchons maintenant à trouver un lien entre le calcul des poids dans la méthode TF-IDF et les concepts de la théorie de l'information vus précédemment. Nous reprenons dans cette partie la démonstration proposée dans l'article \textit{"An information-theoretic perspective of Tf-Idf"} \cite{TF_IDF_measures}. Soit \(\mathcal{Q} = \{q_1, \dots, q_N\}\) un ensemble de questions client et \(\mathcal{T} = \{t_1, \dots, t_K\}\) le dictionnaire de référence reprenant tous les mots présents dans l'ensemble des questions \(\mathcal{Q}\). Soit \(D\) et \(T\) deux variables aléatoires à valeurs dans \(\mathcal{Q}\) et dans \(\mathcal{T}\), modélisant le tirage respectivement d'une question et d'un mot selon les lois empiriques suivantes :
 	
 	
-	\section{Deep learning et mécanisme d'attention}
+	$$P(D=q_i) = \frac{1}{N} \ , \ P(T=t_j) = \frac{1}{N}\sum_{i=1}^{N}f_{i,j} $$ 
 	
-	\subsection{Les modèles Transformers : "Attention is all you need"}
-	\subsection{Le modèle Bert}
+	On rappelle que $f_{i,j}$ est la fréquence du mot $j$ dans la question $i$ donnée par la formule de coefficient $TF_{i,j}$. 
+	
+	Considérons l'information mutuelle entre $D$ et $T$, on trouve ainsi :
+	$$I(D,T) = H(D) + H(T) - H(D,T) = H(D) - H(D|T)$$
+	Or: 
+	$$\displaystyle H(D) = -\sum_{i=1}^{N}P(D=q_i)\ln(P(D=q_i)) = -\sum_{i=1}^{N}\frac{1}{N}\ln\left(\frac{1}{N}\right) = \ln(N)$$
+	Intéressons nous à la quantité : 
+	\begin{align*}
+		H(D|T) &= -\sum_{j=1}^{K}P(T=t_j)H(D|T=t_j) 
+	\end{align*}
+	On a:
+	$$H(D|T=t_j) = \sum_{i=1}^{N}P(D=q_i|T=t_j)\ln(P(D=q_i|T=t_j))$$
+	
+	Soit $t_j\in \mathcal{T}$, notons $N_j$ le cardinal du sous-ensemble $\mathcal{Q}_j$ des documents contenant le mot $t_j$. 
+	
+	Or :
+	$$\left\{\begin{array}{cc}
+		P(D=q_i|T=t_j) = \dfrac{1}{N_j} \quad& \text{si} \quad q_i\in \mathcal{Q}_j\\
+		P(D=q_i|T=t_j) = 0 \quad& \text{si} \quad q_i\not\in \mathcal{Q}_j
+	\end{array}\right.$$
+	
+	Donc : 
+	
+	\begin{align*}
+		H(D|T=t_j) &= \sum_{q_i\in\mathcal{Q}_j}P(D=q_i|T=t_j)\ln(P(D=q_i|T=t_j)) + \sum_{q_i\not\in\mathcal{Q}_j}P(D=q_i|T=t_j)\ln(P(D=q_i|T=t_j))\\
+		&= \sum_{q_i\in\mathcal{Q}_j}\dfrac{1}{N_j}\ln\left(\dfrac{1}{N_j}\right) + 0 = N_j\times\dfrac{1}{N_j}\ln\left(\dfrac{1}{N_j}\right) = \ln\left(\dfrac{1}{N_j}\right)		
+	\end{align*}
+	
+	On trouve donc :
+	\begin{align*}
+		I(D,T) &= H(D) - H(D|T) = \ln(N) + \sum_{j=1}^{K}P(T=t_j)\ln\left(\dfrac{1}{N_j}\right)\\
+			&= \sum_{j=1}^{K}P(T=t_j)\ln(N) + \sum_{j=1}^{K}P(T=t_j)\ln\left(\dfrac{1}{N_j}\right)\\
+			&= \sum_{j=1}^{K}P(T=t_j)\ln\left(\dfrac{N}{N_j}\right) = \sum_{j=1}^{K}P(T=t_j) \times IDF_j\\
+			&= \frac{1}{N}\sum_{i=1}^{N}\sum_{j=1}^{K} f_{i,j}\times IDF_j = \frac{1}{N}\sum_{i=1}^{N}\sum_{j=1}^{K} TF_{i,j}\times IDF_j
+	\end{align*}
 	
 	
-	\section{Conclusion}
+\subsubsection{Indice de similarité entre deux documents}
+Nous avons exploré plusieurs méthodes pour convertir des données textuelles en vecteurs. L'objectif de cette partie est de proposer un moyen de comparer la proximité sémantique entre les mots ou les questions. Quelle métrique pourrions-nous employer pour obtenir un indice de similarité entre des mots ou des documents ? Nous exploiterons les propriétés géométriques des espaces euclidiens pour introduire la similarité cosinus.
+
+Dans les parties précédentes de ce rapport, nous avons proposé plusieurs méthodes pour plonger des données textuelles dans un espace vectoriel de grande dimension. Nous avons présenté l'exemple de la méthode TF-IDF, capable de fournir pour chaque question un embedding de la taille du dictionnaire. Ainsi, chaque question est assimilée à un vecteur de $\mathbb{R}^K$, où $K$ est la taille du dictionnaire. Rappelons que $\mathbb{R}^K$ est un espace vectoriel réel de dimension finie et que nous pouvons le munir du produit scalaire usuel $\langle \cdot, \cdot \rangle$, qui est une forme bilinéaire, symétrique et définie positive sur $\mathbb{R}^K \times \mathbb{R}^K$ à valeurs dans $\mathbb{R}$.
+
+\begin{prop}[Inégalité de Cauchy-Schwarz]\hfil\\
+	Pour tous vecteurs $x, y \in \mathbb{R}^K$, l'inégalité suivante est satisfaite :
+	$$\langle x, y \rangle \leq |\langle x, y \rangle| \leq \|x\| \cdot \|y\|,$$
+	avec égalité si et seulement si $x$ et $y$ sont colinéaires.
+\end{prop}
+  
+
+\begin{proof}
+	Soit $x, y \in \mathbb{R}^K$,
 	
-	\bibliographystyle{plain}
-	\bibliography{bibliographie}
+	or: 
+	\begin{align*}
+		\|x+\lambda y\|^2 &= \langle x+\lambda y, x+\lambda y \rangle = \langle x, x\rangle + 2\lambda\langle x, y \rangle + \lambda^2\langle y,y \rangle\\
+		&= \|x\|^2 + 2\lambda\langle x, y \rangle + \lambda^2\|y\|^2
+	\end{align*}
+
+La fonction $\lambda \mapsto \|x\|^2 + 2\lambda\langle x, y \rangle + \lambda^2\|y\|^2$ est polynomiale de degré deux, elle n'est jamais négative car : $\forall \lambda \in \R , \|x+\lambda y\|\geq 0 $. On en déduit que sont discriminant $\Delta\leq 0$.
+
+Or : $\Delta = 4\langle x, y \rangle^2 -4\|x\|^2\cdot\|y\|^2 $ 
+Donc: 
+	\begin{align*}
+		&\quad \Delta\leq 0\\
+		\Leftrightarrow&\quad 4\langle x, y \rangle^2 -4\|x\|^2\cdot\|y\|^2 \leq 0\\
+		\Leftrightarrow&\quad 4\langle x, y \rangle^2 \leq 4\|x\|^2\cdot\|y\|^2\\
+		\overset{(*)}{\Leftrightarrow}&\quad |\langle x, y \rangle| \leq \|x\|\cdot\|y\|\\
+	\end{align*}
+(*) Par croissance de la fonction carrée sur $\R^+$. 
+
+$\Rightarrow$ Dans le cas où $x$ et $y$ sont colinéaires, par bilinéarité du produit scalaire nous donne l'égalité. 
+$\Leftarrow$ Dans le cas de l'égalité $|\langle x, y \rangle| = \|x\|\cdot\|y\|$, on en déduit que $\Delta = 0$. Ainsi il existe un unique $\lambda_0$ tel que $\|x+\lambda_0 y\| = 0$. Par le caractère définie de la norme on a donc : $x+\lambda_0 y = 0 $. Donc $x$ et $y$ sont colinéaires.
+\end{proof}
+
+\begin{prop-def}[Cosine Similarity]\hfill\\
+	Soit $x, y \in \mathbb{R}^K\backslash\{0_K\}$, on trouve que :
+	$$-1  \leq \dfrac{\langle x, y \rangle}{\|x\| \cdot\|y\|} \leq 1$$
+	
+	La Cosine Similarity entre les deux vecteurs $x$ et $y$ est donnée par la valeur : $\dfrac{\langle x, y \rangle}{\|x\| \cdot\|y\|}$.
+	
+	Par bijectivité de la fonction $\cos : [0,\pi] \to [-1,1]$, il existe un unique $\theta \in [0,\pi]$ tel que : $$\cos(\theta) = \dfrac{\langle x, y \rangle}{\|x\| \cdot\|y\|} $$
+	
+	Cette propriété nous permet de retrouver une notion de géométrie, $\theta$ est l'angle entre les vecteurs $x$ et $y$ semblable à l'intuition que nous pouvons avoir si nous étions dans le plan. 
+\end{prop-def}
+
+Nous utiliserons ce score de ressemblance dans le moteur de recherche que nous allons créer afin d'indexer les questions par ordre de similarité croissante selon la similarité cosinus. Le choix de cette métrique est motivé par son efficacité avec des données creuses.\\
+
+\begin{ex}[Cosine Similarity with Python \cite{CosineSimilarity}]\hfill\\
+	
+\begin{lstlisting}
+import numpy as np
+
+u = np.array([1, 1, 0, 0])
+v = np.array([1, 0, 0, 0])
+w = np.array([2, 1, 0, 0])
+
+def cosine_similarity(x, y):
+	# Compute the dot product between x and y
+	dot_product = np.dot(x, y)
+	# Compute the L2 norms (magnitudes) of x and y
+	magnitude_x = np.sqrt(np.sum(x**2)) 
+	magnitude_y = np.sqrt(np.sum(y**2))
+	# Compute the cosine similarity
+	cosine_similarity = dot_product / (magnitude_x * magnitude_y)
+	return cosine_similarity
+
+print(cosine_similarity(u, v))
+	#-> 0.707
+print(np.arccos(cosine_similarity(u, v)))
+	#-> 0.013
+print(np.linalg.norm(u-v))
+	#-> 1.0
+
+print(cosine_similarity(u, v))
+	#-> 0.948
+print(np.arccos(cosine_similarity(u, v)))
+	#-> 0.005
+print(np.linalg.norm(u-v))
+	#-> 1.0
+
+print(0.013/0.005)
+#-> 2.44
+\end{lstlisting}
+	\newpage 
+	En effet, les embeddings de documents contiennent souvent de nombreux zéros, la similarité cosinus mesure la proximité angulaire plutôt que l'amplitude des vecteurs.Considérez l'exemple suivant où les vecteurs $v$ et $w$ sont tous deux à une distance euclidienne de $1$ du vecteur $u$. Cependant, il existe un facteur de $2$ de différence dans leur proximité angulaire. Dans ce cas, nous dirions que le vecteur $w$ est deux fois plus semblable à $u$ selon le score de similarité cosinus que le vecteur $v$.
+\end{ex}
+
+
+
+
+\subsubsection{Limites de la méthode}
+Dans le cadre de ce projet, nous avons développé une première version de l'application en utilisant les embeddings de documents produits par la méthode TF-IDF pour créer le moteur de recherche. Les résultats étaient satisfaisants et meilleurs qu'avec un simple filtre par mots-clés. Cependant, les faiblesses de cette méthode résident principalement dans la non-prise en compte de l'emplacement des mots dans la phrase et la production d'embeddings dont la dimension est égale à la taille du dictionnaire total. 
+
+La méthode TF-IDF traite chaque terme indépendamment, ce qui signifie qu'elle ne capture pas les informations syntaxiques ni sémantiques qui peuvent être dérivées de l'ordre des mots ou de leur contexte dans la phrase. Par exemple, "Manitou's team awaits a response from the dealer" et "The dealer awaits a response from Manitou's team " produiront le même vecteur avec TF-IDF malgré leurs significations différentes. 
+
+De plus, la dimensionnalité des embeddings créés par TF-IDF est directement liée à la taille du dictionnaire, ce qui peut entraîner des vecteurs très grands, particulièrement dans le cas de grands corpus de texte. Cela peut non seulement augmenter les besoins en stockage et en calcul mais aussi réduire l'efficacité du moteur de recherche en augmentant le temps nécessaire pour comparer les vecteurs.
+
+Pour surmonter ces limites, des techniques plus avancées comme les modèles basés sur les Transformers peuvent être envisagées. Ces méthodes prennent en compte le contexte des mots et génèrent des embeddings de dimension réduite, ce qui améliore la gestion de la sémantique.
+
+
+\section{Deep learning et mécanisme d'attention}
+
+\subsection{Les modèles Transformers : "Attention is all you need"}
+\subsection{Le modèle Bert}
+
+
+\section{Conclusion}
+
+\bibliographystyle{plain}
+\bibliography{bibliographie}
 	
 \end{document}
