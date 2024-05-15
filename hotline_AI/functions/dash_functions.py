@@ -22,7 +22,9 @@ def table_type(df_column):
             isinstance(df_column.dtype, pd.Int8Dtype) or
             isinstance(df_column.dtype, pd.Int16Dtype) or
             isinstance(df_column.dtype, pd.Int32Dtype) or
-            isinstance(df_column.dtype, pd.Int64Dtype)):
+            isinstance(df_column.dtype, pd.Int64Dtype) or
+            isinstance(df_column.dtype, pd.Float32Dtype) or
+            isinstance(df_column.dtype, pd.Float64Dtype)):
         return 'numeric'
     else:
         return 'any'

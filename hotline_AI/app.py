@@ -32,8 +32,8 @@ if __name__ == '__main__':
     server = app.server
 
     #Load data
-    DATA_PATH = os.path.join(os.path.dirname(os.getcwd()),"data/hotline_data/hotline_data_21_24.csv") 
-    columns = ['request_n', 'start_date', 'en_question', 'answer', 'service', 'part_n', 'model', 'serial_n'] #en_question
+    DATA_PATH = os.path.join(os.path.dirname(os.getcwd()),"data/hotline_data/hotline_data_21_24_bis.csv") 
+    columns = ['request_n', 'start_date', 'service', 'en_question', 'en_answer', 'part_n', 'model', 'serial_n'] #en_question
     tickets_assist = pd.read_csv(DATA_PATH,encoding='utf-8')
 
     tickets_assist = tickets_assist[columns]
@@ -75,3 +75,47 @@ if __name__ == '__main__':
     app.run_server(debug=True)
 
 
+"""
+Exemples pour la présentation : 
+
+
+1)J'ai une commande urgente avec une MRT, j'aurai besoin des passages de sangles de la radiocommande. Ces référence ne sont pas détaillés sur la vue éclatée, ainsi que les références des deux sangles possibles
+
+MRT 2550
+
+réponse :
+
+52704862
+
+2) Wayne asked for the blower resistor for the ATC climate control system
+
+Blower resister
+MLT 737
+
+réponse :
+
+958814
+
+3) an you please provide the part number for the tie rod ends for this machine? 
+M 50-4 S2
+
+réponse :
+
+894466
+
+4) how can i find the correct part number for the alarm module
+
+5) Bonjour, 
+
+Pourriez vous me dire, s'il existe une référence pour le pupitre bas complet encadré sur la pièce jointe ? S'il vous plait
+160 ATJ E3
+
+###########################
+
+with a serial nb, ex : 759917
+
+with a model name ex : sslm
+
+with a part number ex : 730747
+
+"""

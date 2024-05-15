@@ -26,20 +26,20 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Tokenization, embeddings et similarité}{3}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Normalisation}{3}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Dictionnaire ou tokenization}{3}{subsection.2.2}\protected@file@percent }
 \citation{BPE}
 \citation{Wordpiece}
-\citation{wordpiecehuggingface}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Dictionnaire ou tokenization}{4}{subsection.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Tokenisation basée sur les espaces et la ponctuation}{4}{subsubsection.2.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Tokenisation en sous-mots}{4}{subsubsection.2.2.2}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces  : Byte Pair Encoding (BPE)}}{4}{algorithm.1}\protected@file@percent }
+\citation{wordpiecehuggingface}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces  : Wordpiece}}{5}{algorithm.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Étapes pour la tokenization}}{5}{figure.1}\protected@file@percent }
 \citation{openai_tokenizer}
 \citation{video_embedding}
-\citation{word2vec}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Étapes pour la tokenization}}{6}{figure.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Tokenization de la réponse de ChatGPT \cite  {openai_tokenizer}}}{6}{figure.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Embedding pour les tokens}{6}{subsection.2.3}\protected@file@percent }
+\citation{word2vec}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Tableau des embeddings en 2d}}{7}{figure.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Projection 2d des embeddings}}{7}{figure.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Word2vec}{7}{subsubsection.2.3.1}\protected@file@percent }
@@ -47,34 +47,78 @@
 \citation{Distributed_Representations_of_Words}
 \citation{Distributed_Representations_of_Words}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Obtenir un concept de royauté avec les embeddings issus des modèles type Word2vec : King + Woman - Man = Queen \cite  {Distributed_Representations_of_Words} }}{9}{figure.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Embedding de phrase basé sur une approche fréquentielle : la méthode TF-IDF}{9}{subsection.2.4}\protected@file@percent }
 \citation{etude2015}
 \citation{TFIDFsumup}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Un moteur de recherche sans modèle Transformers}{10}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}La méthode : Term Frequency-Inverse Document Frequency}{10}{subsection.3.1}\protected@file@percent }
 \citation{TF_IDF_measures}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Lien avec la théorie de l'information}{12}{subsubsection.2.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}La méthode TF-IDF en lien avec la théorie de l'information}{12}{subsubsection.3.1.1}\protected@file@percent }
 \citation{TF_IDF_measures}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}Indice de similarité entre deux documents}{15}{subsubsection.2.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Indice de similarité entre deux documents}{16}{subsubsection.3.1.2}\protected@file@percent }
 \citation{CosineSimilarity}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Limites de la méthode}{18}{subsubsection.3.1.3}\protected@file@percent }
+\citation{a_i_a_y_n}
+\citation{a_i_a_y_n}
+\citation{a_i_a_y_n}
+\citation{bert_paper}
+\citation{video_trans}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Mécanisme d'attention pour le deep learning}{19}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Les modèles Transformers de type encodage}{19}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Données d'entrée : embeddings et positional encoding}{20}{subsubsection.4.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Représentation graphique des vecteurs de positions avec $d_{model} = 768$ et $n=512$}}{20}{figure.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Schéma représentatif des entrées et sorties d'un modèle Transformer type encoder}}{21}{figure.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Schéma représentatif d'un modèle Transformer avec une couche dense et un softmax pour faire de la classification multi-classes}}{22}{figure.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Architecture d'un modèle de type encodeur}{22}{subsubsection.4.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Schéma représentatif des N blocs de Transformer mis bout à bout}}{23}{figure.10}\protected@file@percent }
+\citation{a_i_a_y_n}
+\citation{a_i_a_y_n}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Mécanisme d'attention et multi-têtes}{24}{subsubsection.4.1.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Schéma représentatif des trois réseaux de neurones denses distincts $K,Q$ et $V$ }}{24}{figure.11}\protected@file@percent }
+\citation{a_i_a_y_n}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Pondération contextuelle des vecteurs values avec les poids de la matrice d'attention}}{27}{figure.12}\protected@file@percent }
+\citation{a_i_a_y_n}
+\citation{a_i_a_y_n}
+\citation{a_i_a_y_n}
+\citation{openai_gpt}
+\citation{a_i_a_y_n}
+\citation{und_code_sa}
+\citation{bert_paper}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Schémas issus de l'article "Attetion is all you need" \cite  {a_i_a_y_n} reprenant le principe d'attention et de "Multi Head"}}{28}{figure.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Le modèle BERT}{29}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Architecture du modèle BERT}{29}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Introduction de nouveaux tokens}{29}{subsubsection.4.2.2}\protected@file@percent }
+\citation{bert_paper}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Représentation de l'Input du modèle BERT issue de l'article \cite  {bert_paper}}}{31}{figure.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Pré-entraînement du modèle BERT pour la classification}{31}{subsubsection.4.2.3}\protected@file@percent }
+\citation{robert}
+\citation{bert_paper}
+\citation{bert_paper}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Représentation graphique du pré-entraînement du modèle BERT issue de l'article \cite  {bert_paper}}}{33}{figure.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.4}Fine-tuning du modèle BERT pour des tâches de classification}{34}{subsubsection.4.2.4}\protected@file@percent }
 \bibstyle{plain}
 \bibdata{bibliographie}
-\bibcite{CosineSimilarity}{{1}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3}Limites de la méthode}{18}{subsubsection.2.4.3}\protected@file@percent }
-\bibcite{Distributed_Representations_of_Words}{{2}{}{{}}{{}}}
-\bibcite{TF_IDF_measures}{{3}{}{{}}{{}}}
-\bibcite{TFIDFsumup}{{4}{}{{}}{{}}}
-\bibcite{Wordpiece}{{5}{}{{}}{{}}}
-\bibcite{BPE}{{6}{}{{}}{{}}}
-\bibcite{openai_tokenizer}{{7}{}{{}}{{}}}
-\bibcite{etude2015}{{8}{}{{}}{{}}}
-\bibcite{video_embedding}{{9}{}{{}}{{}}}
-\bibcite{word2vec}{{10}{}{{}}{{}}}
-\bibcite{wordpiecehuggingface}{{11}{}{{}}{{}}}
+\bibcite{a_i_a_y_n}{{1}{}{{}}{{}}}
+\bibcite{bert_paper}{{2}{}{{}}{{}}}
+\bibcite{CosineSimilarity}{{3}{}{{}}{{}}}
+\bibcite{Distributed_Representations_of_Words}{{4}{}{{}}{{}}}
+\bibcite{openai_gpt}{{5}{}{{}}{{}}}
+\bibcite{TF_IDF_measures}{{6}{}{{}}{{}}}
+\bibcite{TFIDFsumup}{{7}{}{{}}{{}}}
+\bibcite{Wordpiece}{{8}{}{{}}{{}}}
+\bibcite{BPE}{{9}{}{{}}{{}}}
+\bibcite{openai_tokenizer}{{10}{}{{}}{{}}}
+\bibcite{etude2015}{{11}{}{{}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Un moteur de recherche avec un modèle Transformers}{35}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}SBERT : un fine-tuning du modèle BERT pour obtenir des embeddings de phrases}{35}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{35}{section.6}\protected@file@percent }
+\bibcite{robert}{{12}{}{{}}{{}}}
+\bibcite{video_trans}{{13}{}{{}}{{}}}
+\bibcite{und_code_sa}{{14}{}{{}}{{}}}
+\bibcite{video_embedding}{{15}{}{{}}{{}}}
+\bibcite{word2vec}{{16}{}{{}}{{}}}
+\bibcite{wordpiecehuggingface}{{17}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\@writefile{toc}{\contentsline {section}{\numberline {3}Deep learning et mécanisme d'attention}{19}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Les modèles Transformers : "Attention is all you need"}{19}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Le modèle Bert}{19}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{19}{section.4}\protected@file@percent }
-\newlabel{LastPage}{{}{19}{}{page.19}{}}
-\xdef\lastpage@lastpage{19}
-\xdef\lastpage@lastpageHy{19}
-\gdef \@abspage@last{19}
+\newlabel{LastPage}{{}{36}{}{page.36}{}}
+\xdef\lastpage@lastpage{36}
+\xdef\lastpage@lastpageHy{36}
+\gdef \@abspage@last{36}

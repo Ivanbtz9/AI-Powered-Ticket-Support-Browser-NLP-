@@ -94,19 +94,18 @@
 	
 	\titlePage % This command creates the custom title page
 	\tableofcontents
-	\newpage 
 	\section{Introduction}\quad\\[-0.5cm]
 	
 	 \par La gestion quotidienne de plus de 500 tickets issus de divers services représente un défi majeur en termes d'efficience opérationnelle pour les employés du Centre Logistique de Pièces de Rechange international (CLPR). L'accès rapide à des informations pertinentes et déjà traitées est crucial pour les équipes métier afin d'optimiser leur réactivité et leur efficacité. Ce projet de fin d'études vise à explorer et développer des méthodes avancées de traitement du langage naturel (NLP). Nous aimerions étudier la similarité entre les données textuelles des tickets issus de leur logiciel Assist. Nous aimerions créer un outil pivot pour faciliter la recherche d'informations pertinentes pour les équipes du support technique. Soit un tableau de bord interactif pour que les utilisateurs puissent consulter efficacement la base de données des tickets Assist et ainsi identifier rapidement les solutions aux problèmes rencontrés.
 	
-	Pour répondre à cet enjeu, il est essentiel de disposer d'une base de données exhaustive des tickets, comprenant la questions et la réponse associées à chaque interaction. Des informations spécifiques telles que les détails techniques des machines concernées, les pièces demandées, ou le service responsable du ticket nous servira de fondement à l'application de filtres avancés sur le tableau de bord.
+	Pour répondre à cet enjeu, il est essentiel de disposer d'une base de données exhaustive des tickets, comprenant la question et la réponse associées à chaque interaction. Des informations spécifiques telles que les détails techniques des machines concernées, les pièces demandées, ou le service responsable du ticket nous servira de fondement à l'application de filtres avancés sur le tableau de bord.
 	
 	Notre travail se concentrera autour de plusieurs questions de recherche clés, notamment : 
 		\begin{itemize}[-]
 		\item Comment traiter et interpréter des données textuelles complexes pour qu'elles soient intelligibles par des modèles informatiques ? 
 		\item De quelle manière peut-on identifier les correspondances les plus pertinentes entre les demandes actuelles et les tickets passés ? 
-		\item Comment adapter un modèle de Large Language Model (\emph{LLM}) déjà existant pour répondre aux besoins des équipes ? 
-		\item Pourrions-nous faciliter les réponses des équipes à l'aide d'une IA générative ? \\
+		\item Comment adapter un modèle qui utilise l'architecture des Transformeurs pour répondre aux besoins des équipes ? 
+		%\item Pourrions-nous faciliter les réponses des équipes à l'aide d'une IA générative ? \\
 	\end{itemize}
 	
 	Cette recherche s'inscrit dans un contexte où l'efficacité de la gestion des tickets est directement liée à la qualité du service offert par le CLPR. En développant un outil capable de réduire significativement le temps nécessaire à la recherche d'informations, ce projet entreprend la transformation des opérations quotidiennes en apportant une réponse concrète aux défis posés par le volume et la complexité des tickets traités. Nous souhaiterions ainsi améliorer des performances opérationnelles du CLPR mais aussi développer les connaissances dans le domaine du traitement automatique du langage naturel appliqué à un environnement professionnel.	
@@ -128,7 +127,7 @@
 	
 	\subsubsection{Tokenisation en sous-mots}
 	
-	La tokenisation en sous-mots attribue un identifiant numérique à chaque mot fréquent tout en décomposant les mots les plus rares en segments plus petits. Par exemple, le mot "hugely" serait découpé en deux tokens "huge" et le sufixe "\#ly". Cette méthode est inspirée de la théorie de l'information étudiée dans le cadre de nos cours, l'idée étant d'utiliser un découpage à longueur variable pour représenter un mot ou une expression. Un exemple notable de cette approche est le Byte Pair Encoding (BPE) \cite{BPE}. Voici une explication de l'algorithme : 
+	La \emph{tokenisation en sous-mots} est une méthode de tokenisation qui attribue un identifiant numérique à chaque mot fréquent tout en décomposant les mots les plus rares en plusieurs autres mots plus petits. Par exemple, le mot "hugely" serait découpé en deux tokens "huge" et le sufixe "\#ly". Cette méthode est inspirée de la théorie de l'information étudiée dans le cadre de nos cours, l'idée étant d'utiliser un découpage à longueur variable pour représenter un mot ou une expression. Un exemple notable de cette approche est le Byte Pair Encoding (BPE) \cite{BPE}. Voici une explication de l'algorithme : 
 	
 
 \begin{algorithm}
@@ -195,7 +194,7 @@
 	
 	\subsection{Embedding pour les tokens}
 
-	Maintenant nous savons comment segmenté un corpus en une liste de tokens, en revanche, nous n'avons intégré aucun sens sémantique pour le moment. L'objet est de convertir chaque token en une donnée vectorielle qui intégrerait le sens sémantique des mots. Il existe de nombreux mécanismes pour obtenir une vectorisation de chaque token, nous présenterons dans cette partie les algorithmes du type "Word2Vec" afin d'avoir une idée plus intuitive du fonctionnement de l'étape d'embedding. Cependant, avant de donner une approche profonde sur la méthodologie, nous proposons une expérience fictive pour donner l'intuition sur la vectorisation des tokens \cite{video_embedding}. Cette expérience fictive, inspirée des neurosciences proposerait de placer des électrodes sur le crâne de plusieurs patients afin de mesurer l’activité des différentes zones du cerveau suite à une stimulation auditive. À l’écoute de certains mots, nous pourrions mesurer l’activité cérébrale moyenne en chacune des zones du cerveau. Les réponses électriques issues de ces stimulations auditives pourraient nous renvoyer des vecteurs dans un espace vectoriel multidimensionnelle. Une représentation 2d via une projection, pourrait nous donner une visualisation des mots avec leur sens sémantique. \\[1cm] 
+	Maintenant nous savons comment segmenter un corpus en une liste de tokens, en revanche, nous n'avons intégré aucun sens sémantique pour le moment. L'objet est de convertir chaque token en une donnée vectorielle qui intégrerait le sens sémantique des mots. Il existe de nombreux mécanismes pour obtenir une vectorisation de chaque token, nous présenterons dans cette partie les algorithmes du type "Word2Vec" afin d'avoir une idée plus intuitive du fonctionnement de l'étape d'embedding. Cependant, avant de donner une approche profonde sur la méthodologie, nous proposons une expérience fictive pour donner l'intuition sur la vectorisation des tokens \cite{video_embedding}. Cette expérience fictive, inspirée des neurosciences proposerait de placer des électrodes sur le crâne de plusieurs patients afin de mesurer l’activité des différentes zones du cerveau suite à une stimulation auditive. À l’écoute de certains mots, nous pourrions mesurer l’activité cérébrale moyenne en chacune des zones du cerveau. Les réponses électriques issues de ces stimulations auditives pourraient nous renvoyer des vecteurs dans un espace vectoriel multidimensionnel. Une représentation 2d via une projection, pourrait nous donner une visualisation des mots avec leur sens sémantique. \\[1cm] 
 	
 
 \begin{figure}[!h]  % Utilisez figure au lieu de figure* si vous n'avez pas besoin d'une figure qui s'étend sur deux colonnes.
@@ -227,7 +226,7 @@
 		\item Bag of Words : Pour une fenêtre donnée (ex : 9 mots), on construit un modèle  capable de prédire le token central (ex : 5eme mot). 
 		\item Skip-gram: Pour un mot en entrée et une fenêtre de prédiction donné (ex : 4 mots), on construit un modèle capable de prédire les mots voisins.
 	\end{itemize}
-\newpage
+
 	\begin{rmq}
 			Ces techniques d'apprentissage supervisé utilisent le corpus de référence pour ajuster les poids à chaque étape. Le schéma ci-dessous représente un réseau de neurone MLP simple de type Skip-Gram. Via une entrée vectorielle en one-hot encodding, le modèle prédit des probabilités de voisinages. \\
 			
@@ -242,7 +241,7 @@
 
 	
 	
-	En entrée du modèle, nous utilisons une représentation one-hot encoding des mots, en sortie du modèle, nous obtenons des probabilités via l'utilisation de la fonction Softmax. Pour une dictionnaire de taille $N$ et $p\geq 100$ neurones dans la première couche du réseau, notons $W_1 \in \mathcal{M}_{N,p}(\R)$ la matrice des poids associés à la couche 1. Après entraînement du modèle, l'embeddind de chaque mot se retrouve via le produit matriciel : $V_kW_1 \in \mathcal{M}_{1,p}(\R)$ ($V_k\in\mathcal{M}_{1,N}(\R)$ est la représentation one-hot encoding du mot k).  
+	En entrée du modèle, nous utilisons une représentation one-hot encoding des mots, en sortie du modèle, nous obtenons des probabilités via l'utilisation de la fonction Softmax. Pour une dictionnaire de taille $N$ et $p\geq 100$ neurones dans la première couche du réseau, notons $W_1 \in \mathcal{M}_{N,p}(\R)$ la matrice des poids associés à la couche 1. Après entraînement du modèle, l'embedding de chaque mot se retrouve via le produit matriciel : $V_kW_1 \in \mathcal{M}_{1,p}(\R)$ ($V_k\in\mathcal{M}_{1,N}(\R)$ est la représentation one-hot encoding du mot k).  
 	
 	Pour l'entraînement du modèle de type Skip Gram ci dessus, sur un corpus  de référence (ex : $(w_i)_i$ une suite de mots), avec un Batch Size  $T \geq 1$ et une fenêtre de référence $c\geq2$, la fonction de coût à minimiser par ajustement itératif des poids $(W_1,W_2,\dots,W_n)$ est la suivante :  
 	
@@ -263,15 +262,25 @@
 	\end{figure*}
 	
 	
-	\subsection{Embedding de phrase basé sur une approche fréquentielle : la méthode TF-IDF}
+	\section{Un moteur de recherche sans modèle Transformers}
 	
-	Le premier objectif de ce projet serait de construire un moteur de recherche basé sur les questions clients. Nous aimerions être en mesure de comparer chaque nouvelle question client avec les questions clients du passé. Pour cela il faut trouver une méthodologie permettant de plonger l'information d'une phrase entière dans un $\R$ espace vectoriel. La méthode TF-IDF, acronyme de "Term Frequency-Inverse Document Frequency", constitue une technique fondamentale en recherche d'information appliquée aux données textuelles. Utilisée principalement par les moteurs de recherche ces dernières années, cette méthode évalue la pertinence d'un document en fonction de l'occurrence d'un terme, d'une expression, ou d'un ensemble de termes. Initialement conçue pour améliorer la pertinence des résultats de recherche internet en lien avec une requête spécifique, nous adopterons dans un premier temps cette méthode afin de classer les questions antérieures au regard des nouvelles problématiques de nos clients.\\
+	Le premier objectif pour pouvoir construire un moteur de recherche, serait d'être en mesure de comparer chaque nouvelle question client avec les questions clients du passé. Pour cela il faut trouver une méthodologie permettant de plonger l'information d'une phrase entière dans un $\R$ espace vectoriel. 
+	
+	
+	
+	\subsection{La méthode : Term Frequency-Inverse Document Frequency}
+	
+	La méthode TF-IDF, acronyme de "Term Frequency-Inverse Document Frequency", constitue une technique fondamentale en recherche d'information appliquée aux données textuelles. Utilisée principalement par les moteurs de recherche ces dernières années, cette méthode évalue la pertinence d'un document en fonction de l'occurrence d'un terme, d'une expression, ou d'un ensemble de termes. Initialement conçue pour améliorer la pertinence des résultats de recherche internet en lien avec une requête spécifique, nous adopterons dans un premier temps cette méthode afin de classer les questions antérieures au regard des nouvelles problématiques de nos clients.\\
 	
 	Le principe de la méthode TF-IDF repose sur une mesure statistique attribuant à chaque terme d'un document (ou "token") un poids donné par le produit de sa fréquence dans le document donné et le logarithme de son importance inverse au sein du corpus d'apprentissage. Ainsi, pour chaque question antérieure, l'importance d'un terme est calculée selon sa fréquence dans cette question et sa distribution dans l'ensemble du corpus initial. Le corpus de référence noté $Q : = \{q_1,q_2,\dots,q_N\}$ englobe toutes les questions passées. Le choix d'un tokenizer nous donnera pour l'ensemble des questions $Q$ un dictionnaire de référence, celui-ci inclut tous les mots ou expressions utilisés dans le corpus, il correspond à l'ensemble des Tokens que nous noterons $T : = \{T_1,T_2,\dots,T_K\}$.
 	
-	Avec nos notations un document sera assimilé à un vecteur de $\R^K$. Dans ce cadre, l'information contenue dans chaque interrogation client (un document) est convertie en vecteur, ceci en mettant l'accent sur les termes et leur pertinence, indépendamment de leur position dans le texte. Par la suite, notre étude s'attachera également à explorer d'autres méthodes de vectorisation de documents plus sophistiquées.
+	Dans ce cadre, l'information contenue dans chaque interrogation client (un document) est convertie en un vecteur de $\R^K$, ceci en mettant l'accent sur les termes et leur pertinence, indépendamment de leur position dans le texte. Par la suite, notre étude s'attachera également à explorer d'autres méthodes de vectorisation de documents plus sophistiquées.\\
 	
-	Avant de détailler le calcul des coefficients de la matrice des poids de référence, il convient de mentionner une étude de 2015 \cite{etude2015} qui estimait qu'un grand nombre des systèmes de recommandation basés sur le texte s'appuyaient sur la méthode TF-IDF. Cette méthode offre également des perspectives intéressantes pour la synthèse de textes. Cela se fait par la sélection des phrases les plus significatives d'un corpus, cette application spécifique ne sera pas abordée dans le cadre de notre projet mais cet article \cite{TFIDFsumup} peut vous donner plus de renseignements.
+	\begin{rmq}
+		Avant de détailler le calcul des coefficients de la matrice des poids de référence, il convient de mentionner une étude de 2015 \cite{etude2015} qui estimait qu'un grand nombre des systèmes de recommandation basés sur le texte s'appuyaient sur la méthode TF-IDF. Cette méthode offre également des perspectives intéressantes pour la synthèse de textes. Cela se fait par la sélection des phrases les plus significatives d'un corpus, cette application spécifique ne sera pas abordée dans le cadre de notre projet mais cet article \cite{TFIDFsumup} peut vous donner plus de renseignements.
+	\end{rmq}
+	
+	
 	
 	Abordons maintenant l'explication détaillée de la méthode TF-IDF, en mettant l'accent sur le calcul des poids attribués à chaque terme (ou "token") dans un document. La méthode se divise en deux composantes principales : la fréquence du terme (TF) et la log-fréquence inverse du document (IDF). Nous noterons dans la suite $P\in \mathcal{M}_{N,K}(\R)$ la matrice des poids.\\
 	
@@ -285,7 +294,7 @@
 	\end{pmatrix}$$
 	
 	\begin{enumerate}
-		\item Fréquence du Terme (TF) :\\
+		\item \textbf{Fréquence du Terme (TF) :}\\
 		
 		Cette composante mesure la fréquence d'un terme $T_j$ dans un document $i$ donné. La fréquence est calculée selon la formule suivante : 
 		
@@ -300,7 +309,7 @@
 		\end{rmq}
 		
 		
-		\item Fréquence Inverse du Document (IDF) : \\
+		\item \textbf{Fréquence Inverse du Document (IDF) :} \\
 		
 		Cette composante vise à diminuer le poids des termes qui apparaissent trop fréquemment dans l'ensemble du corpus, elle est calculée par la formule suivante :
 		$$  IDF_{j} = \ln\left(\dfrac{N}{\sum_{i=1}^{N}\mathbb{1}_{\{T_j \in q_i\}}}\right)$$ 
@@ -318,7 +327,7 @@
 	
 	L'efficacité de la méthode TF-IDF repose sur son aptitude à équilibrer l'importance des termes en fonction de leur fréquence dans un document particulier et leur unicité dans l'ensemble du corpus. Les termes rares au niveau du corpus mais fréquents dans un document spécifique reçoivent un poids élevé, ce qui permet de valoriser leur pertinence spécifique. À l'inverse, les mots très communs, tels que les prépositions ("a", "the", "I", ...) ou les formules de politesse ("hello", "hi",...)  n'apportent pas d'information significative sur le contenu du document, ils sont pénalisés par un poids réduit. Pour chaque terme dans un document, le poids TF-IDF est calculé comme le produit de TF et IDF. Cette opération donne un poids qui caractérise l'importance relative du terme dans le contexte du document par rapport à l'ensemble du corpus. En fin de compte, nous obtenons une matrice de poids où les lignes représentent les documents du corpus initial et les colonnes les tokens. 
 	
-	\subsubsection{Lien avec la théorie de l'information}
+	\subsubsection{La méthode TF-IDF en lien avec la théorie de l'information}
 	
 	La méthode TF-IDF est souvent présentée comme une méthode empirique avec de nombreuses variantes dans sa mise en pratique. En s'inspirant de l'article \textit{"An information-theoretic perspective of Tf-Idf"} \cite{TF_IDF_measures} et par nos connaissances de la théorie de l'information, nous allons proposer une justification mathématiques pour le calcul des poids vu précédemment. Commençons par définir certains objets mathématiques iconiques de la théorie de l'information :
 	
@@ -356,7 +365,6 @@
 			 &= - \sum_{x_i\in \mathcal{X}}\ln\left(P(x_i)\right)P(x_i) - \sum_{y_j\in \mathcal{Y}}\ln\left(P(y_j)\right)P(y_j) + \sum_{x_i\in \mathcal{X}}\sum_{y_j\in \mathcal{Y}}P(x_i,y_j)\ln\left(P(x_i,y_j)\right)\\
 			 &=  H(X) +H(Y) -H(X,Y) 
 		\end{align*}
-	
 	or 
 		\begin{align*}
 			H(X)-H(X,Y) &= -\sum_{x_i\in \mathcal{X}}P(x_i)\ln\left(P(x_i)\right) + \sum_{x_i\in \mathcal{X}}\sum_{y_j\in \mathcal{Y}}P(x_i,y_j)\ln\left(P(x_i,y_j)\right)\\
@@ -372,8 +380,7 @@
 	\begin{align*}
 		H(Y)-H(X,Y) &= - H(X|Y)
 	\end{align*}
-\newpage
-	
+
 	Enfin 
 		
 	\begin{align*}
@@ -381,7 +388,7 @@
 	\end{align*}
 			
 	\begin{rmq}
-		L'information mutuelle entre deux variables aléatoires est une valeur symétrique : $I(X,Y) = I(Y,X)$
+		L'information mutuelle entre deux variables aléatoires est une application symétrique : $I(X,Y) = I(Y,X)$
 	\end{rmq}
 	
 		\end{enumerate}
@@ -515,7 +522,7 @@ print(np.linalg.norm(u-v))
 print(0.013/0.005)
 #-> 2.44
 \end{lstlisting}
-	\newpage 
+
 	En effet, les embeddings de documents contiennent souvent de nombreux zéros, la similarité cosinus mesure la proximité angulaire plutôt que l'amplitude des vecteurs.Considérez l'exemple suivant où les vecteurs $v$ et $w$ sont tous deux à une distance euclidienne de $1$ du vecteur $u$. Cependant, il existe un facteur de $2$ de différence dans leur proximité angulaire. Dans ce cas, nous dirions que le vecteur $w$ est deux fois plus semblable à $u$ selon le score de similarité cosinus que le vecteur $v$.
 \end{ex}
 
@@ -531,11 +538,330 @@ De plus, la dimensionnalité des embeddings créés par TF-IDF est directement l
 
 Pour surmonter ces limites, des techniques plus avancées comme les modèles basés sur les Transformers peuvent être envisagées. Ces méthodes prennent en compte le contexte des mots et génèrent des embeddings de dimension réduite, ce qui améliore la gestion de la sémantique.
 
+\section{Mécanisme d'attention pour le deep learning}
 
-\section{Deep learning et mécanisme d'attention}
+Dans cette partie, nous aborderons les réseaux de neurones du type \emph{Transformer} pour le traitement des données séquentielles. Nous traiterons des données textuelles grâce à des méthodes de deep learning basées sur le mécanisme d'attention présenté dans l'article "Attention is All You Need" \cite{a_i_a_y_n}. Contrairement aux réseaux de neurones récurrents (RNN) qui traitent aussi des données séquentielles en tenant compte de l'ordre d'arrivée des tokens et en utilisant un processus de mémoire, les modèles Transformer traitent les séquences dans leur ensemble sans prendre en compte l'ordre initial des tokens dans la phrase. Une innovation clé de ce type de modèle est le mécanisme d'attention que nous décrirons en détail plus loin dans ce rapport. De plus, l'architecture des Transformers a été conçue pour permettre la parallélisation des calculs, un avantage non disponible avec des RNN tels que les LSTM et les GRU. Nous pouvons classer les modèles de type Transformer en trois catégories : les modèles d'encodage uniquement tels que "BERT", les modèles de décodage uniquement tels que "GPT", et les modèles combinant encodeur et décodeur comme celui présenté dans l'article "Attention is All You Need". Nous commencerons notre présentation des modèles de type Transformer par les modèles encodeur, bien que cette approche ne suive pas l'ordre chronologique de leur développement.
 
-\subsection{Les modèles Transformers : "Attention is all you need"}
-\subsection{Le modèle Bert}
+\subsection{Les modèles Transformers de type encodage}
+Le premier modèle de type Transformer a été proposé en 2017 et présenté dans l’article "Attention is All You Need" \cite{a_i_a_y_n}. Son architecture repose sur une combinaison d'un encodeur et d'un décodeur en utilisant un empilement de blocs d’attention. Nous choisirons dans ce rapport de présenter les modèles de type encodeur simple, ils offrent une représentation bidirectionnelle des données textuelles qui sera utile pour construire un moteur de recherche sur les tickets Assist. Nos explications suivantes reposes sur la lecture des articles : "Attention is All You Need" \cite{a_i_a_y_n} et de l'article "BERT: Pre-training of Deep Bidirectional Transformers for
+Language Understanding" \cite{bert_paper}. La vidéo "Seq. 08 / Transformers" proposée par les équipes de l'IDRIS \cite{video_trans} nous a aussi beaucoup inspirée et aidée dans la rédaction des parties suivantes.
+
+\subsubsection{Données d'entrée : embeddings et positional encoding}
+
+Avant de rentrer dans l'architecture du modèle en lui même, considérons-le d'abord comme une boîte noire et concentrons-nous sur les données d’entrée et de sortie de celui-ci. Pour une séquence de tokens (des "mots" dans notre cas), nous allons utiliser une table d'embeddings fournie par le modèle lui-même pour convertir chaque token en un vecteur de taille fixe ($d_{model}$ = 768, dans le cas d’un BERT de base). À l’inverse des modèles récurrents qui traitent les tokens séquentiellement, les Transformers manipulent directement une séquence de taille fixe ( $n=512$ pour un BERT de base). Pour conserver une notion de position des tokens dans le séquence, une solution a été d'introduire des embeddings positionnels de la même taille $d_{model}$. Ces embeddings positionnels sont combinés aux embeddings de tokens pour former l'entrée du modèle grâce à une addition deux à deux. Une technique d'encodage positionnel que nous proposons est celle présentée dans l'article "Attention is All You Need". Elle utilise des fonctions cosinus et sinus comme présenté ci dessous :  
+
+$$PE_{(pos,j)} = \ \left\{\begin{array}{c}
+	\sin\left(pos/10^{4 \times \frac{2 \times\lfloor \frac{j}{2} \rfloor}{d_{model}}} \right) \quad \text{si  : } j \equiv 0 ~[2]\\\quad\\
+	\cos\left(pos/10^{4 \times \frac{2 \times \lfloor \frac{j}{2} \rfloor}{d_{model}}} \right) \quad \text{si  : } j \equiv 1 ~[2]
+\end{array}\right.$$
+
+		\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.25]{images/positional_embedding.png}
+	\caption{Représentation graphique des vecteurs de positions avec $d_{model} = 768$ et $n=512$}
+\end{figure*}
+
+\begin{rmq}
+	Ce type d’encodage pourrait aider le modèle à mieux interpréter les séquences translaté d'un facteur $k$
+\end{rmq}
+
+Le modèle renvoie ensuite une séquence de nouveaux vecteurs, qui peuvent être considérés comme de nouvelles variables ("hidden states" ou "features") enrichies des informations de la séquence initiale. Ils contiennent des représentations intégrées des interactions entre tous les éléments de la séquence d'entrée grâce au mécanisme d'attention.
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.29]{images/Transformer_encoder.png}
+	\caption{Schéma représentatif des entrées et sorties d'un modèle Transformer type encoder}
+\end{figure*}
+
+\begin{rmq}
+	Certaines phrases plutôt courtes, une fois tokenisées, ne remplissent pas nécessairement le nombre maximal de tokens que le modèle peut recevoir en entrée. Pour pallier à ce manque de tokens, il est possible de rajouter du padding, ce qui permet de combler ce vide. Le token de padding (« PAD ») possède son propre embedding qui sera également appris durant l'entraînement du modèle. L'introduction de nouveaux tokens est une pratique que nous aurons l'occasion de revoir dans la présentation du modèle BERT.   
+\end{rmq}
+
+Une couche de réseau de neurones dense est souvent ajoutée à la suite du modèle Transformer. Cette couche permet, par exemple d'effectuer des tâches de classification, ce qui facilite l'entraînement des poids du modèle lors de la phase initiale de pré-entraînement ainsi que durant les phases de finetuning destinées à spécialiser le modèle. Nous examinerons plus en détail cette composante avec le modèle BERT ultérieurement.
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.45]{images/Transformer_linear.png}
+	\caption{Schéma représentatif d'un modèle Transformer avec une couche dense et un softmax pour faire de la classification multi-classes}
+\end{figure*}
+
+\subsubsection{Architecture d'un modèle de type encodeur}
+Rentrons maintenant dans les détails d'un réseau de neurones Transformer de type encodeur avec des embeddings de dimension \(d_{\text{model}}\) (\textit{hidden size}). Comme nous l'avons vu précédemment, le modèle prend en entrée une séquence de vecteurs \((x_1, x_2, \dots, x_n)\) et retourne en sortie une séquence de vecteurs \((y_1, y_2, \dots, y_n)\). Dans notre présentation, nous aurons \(x_i, y_j \in \mathbb{R}^{d_{\text{model}}}\), bien que la dimension des vecteurs de sortie puisse être différente. En comparaison avec les réseaux de neurones convolutifs (CNN) qui empilent des blocs de convolutions successifs, les modèles de type Transformer empilent des blocs de Transformers (\(\times N\)). Chaque bloc de Transformer possède la même architecture et se compose de deux parties distinctes : la première correspond à la multi-tête d'attention (\textit{Multi-Head Attention}) et la seconde à une couche dense linéaire de neurones (\textit{Feed Forward}) modifiant la représentation des vecteurs qui la traversent. Après chacune de ces parties, des connexions résiduelles entre les entrées et les sorties sont ajoutées, ainsi qu'une phase de normalisation des tableaux de valeurs. Ces pratiques permettent d'éviter l'explosion ou la disparition du gradient dans les phases d'apprentissage du modèle. La famille de vecteurs en entrée sera traitée dans son ensemble dans le bloc de \textit{Multi-Head Attention}, d'où ressortira une famille de vecteurs de même dimension et de même cardinal. Ensuite, chaque vecteur passera chacun son tour dans un bloc dense (\textit{Feed Forward} est un réseaux de neurones linéaires avec une ou deux couches) pour obtenir une nouvelle représentation de ceux-ci dans l'espace \(\mathbb{R}^{d_{\text{model}}}\).
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.25]{images/bloc_transformer.png}
+	\caption{Schéma représentatif des N blocs de Transformer mis bout à bout}
+\end{figure*}
+
+\subsubsection{Mécanisme d'attention et multi-têtes}
+
+Nous entrons maintenant dans la phase principale qui caractérise les modèles Transformers : le mécanisme d'attention. Nous allons décrire dans un premier temps la structure d'un bloc d'attention, puis expliquer le principe qui se cache derrière les têtes d'attention multiples. 
+
+\textbf{Le mécanisme d'attention :}
+
+Le mécanisme d'attention prend en compte la séquence entière de vecteurs et la traite de manière globale pour en extraire les relations profondes entre les vecteurs d'entrée. Ce mécanisme introduit trois matrices essentielles : la matrice des \textit{keys} (notée \(K\)), la matrice des \textit{queries} (notée \(Q\)) et la matrice des \textit{values} (notée \(V\)). Ces matrices sont obtenues à partir de trois réseaux de neurones denses distincts, chacun avec une couche. Chaque vecteur d'entrée est transformé par un produit matriciel avec les matrices de poids \(W_K, W_Q \in \mathcal{M}_{n,d_k}(\R)\) et \(W_V \in \mathcal{M}_{n,d_v}(\R)\), où \(d_k\) et \(d_v\) sont des dimensions correspondant à des hyperparamètres du réseau et \(n\) est la longueur de la séquence.
+
+
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.33]{images/K_Q_V.png}
+	\caption{Schéma représentatif des trois réseaux de neurones denses distincts $K,Q$ et $V$ }
+\end{figure*}
+
+
+
+ Une fois les matrices \(K\), \(Q\) et \(V\)  obtenues, il y a un produit matriciel entre \(Q\) et \(K^T\) normalisé par \(\sqrt{d_k}\). Ceci nous permettra d'obtenir une matrice que nous noterons \(M_{\text{sca}}\), elle correspond à la matrice des produits scalaires entre les vecteurs \(Q_{i,:}\) et \(K_{j,:}\) qui sont des représentations différentes des vecteurs initiaux dans l'espace $\R^{d_k}$.
+
+\begin{rmq}
+	La normalisation par un facteur \(\sqrt{d_k}\) est présentée dans l'article \textit{"Attention Is All You Need}" \cite{a_i_a_y_n}, elle a été introduite dans le but d'améliorer les phases d'entraînement du modèle en diminuant l'amplitude des valeurs prisent dans la matrice \(QK^T\). Cette pratique permet de ne pas écraser certaines valeurs de la matrice \(M_{\text{sca}}\) par le passage au Softmax à l'étape suivante. En effet, lorsque la dimension $d_k$ augmente, l'apprentissage du modèles sans normalisations perd en stabilité \cite{a_i_a_y_n}. 
+	
+	Nous proposons ici de développer la remarque en bas de page 4 de l'article \textit{"Attention Is All You Need}" \cite{a_i_a_y_n} : 
+	
+	Pour $0\leq i,j \leq n$, supposons que $K[i,:]$ et $Q[j,:]$ représentent deux vecteurs aléatoires indépendants, constitués respectivement des variables iid $(K_{il})_l$ et $(Q_{jl})_l$ centrées et réduites. Alors : 
+	
+
+	\begin{align*}
+		&\langle K[i,:] , Q[j,:]\rangle = \sum_{l=1}^{d_k} K_{il} \times Q_{jl}\\\\
+		&\mathbb{E}\left[\langle K[i,:] , Q[j,:]\rangle\right] = \sum_{l=1}^{d_k} \mathbb{E}\left[K_{il} \times Q_{jl}\right] = \sum_{l=1}^{d_k} \mathbb{E}\left[K_{il} \right] \times \mathbb{E}\left[ Q_{jl}\right] = 0\\\\
+		&\mathbb{V}\left[\langle K[i,:] , Q[j,:]\rangle\right] = \mathbb{E}\left[\langle K[i,:] , Q[j,:]\rangle^2\right] = \sum_{l=1}^{d_k}\sum_{s=1}^{d_k} \mathbb{E}\left[K_{il} \times K_{is} \times Q_{jl}\times Q_{js}\right] \\
+		& = \sum_{l=s}^{d_k} \mathbb{E}\left[K_{il}^2 \right] \times \mathbb{E}\left[ Q_{jl}^2\right] +  \sum_{l\neq s}^{d_k} \mathbb{E}\left[K_{il}\right] \times \mathbb{E}\left[K_{is}\right]\times \mathbb{E}\left[Q_{il}\right]\times \mathbb{E}\left[ Q_{js}\right] = \sum_{l=s}^{d_k} 1 +  \sum_{l\neq s}^{d_k} 0 = d_k\\ \\
+		&\mathbb{V}\left[\dfrac{\langle K[i,:] , Q[j,:]\rangle}{\sqrt{d_k}}\right] = \dfrac{1}{\sqrt{d_k}} \times \mathbb{V}\left[\langle K[i,:] , Q[j,:]\rangle\right] = 1
+	\end{align*}
+
+
+On trouve ainsi que la normalisation par $\sqrt{d_k}$ permet de réduire sous certaines hypothèses l'amplitude de la variable aléatoire $\langle K[i,:] , Q[j,:]\rangle$. \\[1cm]
+
+
+\end{rmq}
+
+
+Chaque ligne de la matrice \(M_{\text{sca}}\) passe ensuite par la fonction Softmax afin d'obtenir des poids d'attentions, la somme sur chaque ligne faisant alors 1. La matrice obtenue, notée \(M_{\text{att}}\), s'appelle la \emph{matrice d'attention}. 
+
+\begin{minipage}[t]{1\textwidth}
+\begin{minipage}[c]{0.25\textwidth}
+	
+	\begin{align*}
+		&M_{\text{sca}} = \dfrac{QK^T}{\sqrt{d_k}}\\\\
+		&M_{\text{att}} = Softmax(M_{\text{sca}},axis = 1)\\\\
+		&M_{\text{att}}(i,j) = \dfrac{\exp(M_{\text{sca}}(i,j))}{\displaystyle\sum_{k=1}^{n}\exp(M_{\text{sca}}(i,k))}	
+	\end{align*}
+
+	
+\end{minipage}\hfil\begin{minipage}[c]{0.6\textwidth}
+	\includegraphics*[scale=0.3]{images/softmax.png}	
+\end{minipage}
+\hfil\\[1cm]
+\end{minipage}
+
+
+
+
+\begin{rmq}
+	Il est possible de rajouter un masque à droite avant le passage à la fonction softmax. Cette pratique constitue la principale distinction entre un modèle Transformers de type encodeur et un modèle Transformers de type décodeur. Dans le cas d'un modèle Transformers de type encodeur, nous parlons d'un bloc d'attention bidirectionnel, tandis que dans un modèle Transformers de type décodeur, nous parlons d'un bloc d'attention masqué unidirectionnel.  Pour ce faire, il suffit d'ajouter à la matrice \(M_{\text{sca}}\), une matrice triangulaire strictement supérieure avec des valeurs de \(-\infty\) et des zéros sur la partie inférieure. Après application de la fonction softmax sur les lignes, les poids strictement au-dessus de la diagonale seront tous égaux à zéro. Cette opération force le mécanisme d'attention à ne pas prendre les tokens de droite pour déterminer les poids contextuels. Ce procédé de masquage dans les matrices d'attention est la principale différence d'architecture entre un modèle Transformers de type encodeur (BERT) et un modèle Transformers de type décodeur (GPT).
+	
+\end{rmq}
+
+\begin{rmq}
+	Une troisième architecture de modèles Transformer du type encodeur-décodeur n'est pas la concaténation de ces deux types de modèles précédents. Une attention croisée avec les features issues de la partie encodeur est incluse dans la partie décodeur du modèle encodeur-décodeur.
+\end{rmq}
+
+\begin{rmq}
+	Il ne faut pas confondre le procédé de masquage dans la construction de la matrice d'attention avec l'introduction d'un token \textit{"MASK"} que nous présenterons lors du pré-entraînement du modèle BERT.
+\end{rmq}
+
+
+Une fois la matrice d'attention obtenue, nous obtenons les sorties du bloc d'attention grâce au produit matriciel entre la matrice \(M_{\text{att}}\) et la matrice de values \(V\). Nous obtenons une matrice de \(\mathcal{M}_{n,d_v}(\R)\) où chaque ligne correspond à une combinaison linéaire des lignes de la matrice \(V\). Nous pouvons décrire ce procédé comme une pondération de chaque token en fonctions des poids de la matrice d'attention et des autres tokens dans la séquence. 
+$$Attention(K,Q,V) = Softmax(\dfrac{QK^T}{\sqrt{d_k}},axis = 1)V$$
+
+On a donc pour chaque ligne $0\leq i \leq n$ :
+	$$Attention(K,Q,V)[i,:] = M_{\text{att}}[i,:] \cdot V = \sum_{i=1}^{n}\sum_{j=1}^{n} M_{\text{att}}[i,j] \times \left(E_{ij}\cdot V\right)[i,:] = \sum_{i=1}^{n}\sum_{j=1}^{n} M_{\text{att}}[i,j] \times V[j,:]$$	
+\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.3]{images/prod_V.png}
+	\caption{Pondération contextuelle des vecteurs values avec les poids de la matrice d'attention}
+\end{figure*}
+
+\textbf{Multi-tête d'attention :}
+
+Soit $h$ un entier, l'architecture des modèles Transformers propose d'effectuer $h$ fois le mécanisme d'attention dans chaque bloc de Transformer, celui-ci s'effectue sur des sous représentations des matrices $K,Q$ et $V$. Une tête d'attention ($\left(head(K,Q,V)_i\right)_{1\leq i\leq h}$) effectue le même procédé d'attention que nous avons vu précédemment avec les matrices $K_i$, $Q_i$ et $V_i$ constituées respectivement des projections des lignes des matrices K,Q et V dans des espaces de dimensions $\hat{d_k},\hat{d_k}$ et $\hat{d_v}$. Ces projections sont effectuées par des réseaux de neurones denses associées aux matrices de poids suivantes : $W_i^Q, W_i^K\in\mathcal{M}_{d_k,\hat{d_k}}(\R)$ et $W_i^V\in\mathcal{M}_{d_v,\hat{d_v}}(\R)$.
+
+Ainsi : 
+
+$$K_i = K\cdot W_i^K ,\quad  Q_i = Q\cdot W_i^Q ,\quad  V_i = V \cdot W_i^V $$
+
+$$head_i(K,Q,V) = Attention(K_i,Q_i,V_i) $$
+
+\newpage 
+\begin{rmq}
+	Nous avons introduit les notations $\hat{d_k}$ et  $\hat{d_v}$ qui ne sont pas présentes dans l'article "Attention is all you need". Avec nos notations et en lien avec ce qui est présenté dans l'article \cite{a_i_a_y_n}, un exemple d'hyper-paramètres proposés est le suivant : 
+	
+	$$d_{model} = 512, \quad d_k= d_v= d_{model}, \quad h=8, \quad \hat{d_k} = \hat{d_v} = d_{model}/h = 64  $$
+\end{rmq}
+
+Enfin, les $n$ sorties de dimension $\hat{d_v}$ issues de chacune des têtes sont concaténées pour obtenir $n$ vecteurs de dimension $h\times\hat{d_v}$. Une projection est alors faite à l'aide d'un réseau de neurones dense, notons $W^O\in\mathcal{M}_{\hat{d_v},d_{model} }(\R)$ les poids associés, ceci afin de retrouver $n$ vecteurs à la sortie du blocs "MultiHead" de dimension $d_{model}$.
+
+$$MultiHead(Q,K,V) = Concat(head_1(K,Q,V), \cdots , head_h(K,Q,V)) \cdot W^O$$ 
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.45]{images/schéma_aan.png}
+	\caption{Schémas issus de l'article "Attetion is all you need" \cite{a_i_a_y_n} reprenant le principe d'attention et de "Multi Head"}
+\end{figure*}
+
+Ces schémas concluent la partie présentant l'architecture des modèles Transformers de type encodeur. Nous avons seulement présenté à travers une remarque les modèles Transformers de type décodeur, qui sont plus adaptés pour la génération de contenu et l'interaction avec un utilisateur. Nous vous invitons à lire l'article "Improving Language Understanding by Generative Pre-Training" \cite{openai_gpt} pour plus de renseignements. Initialement, le premier modèle Transformer avait une architecture de type encodeur-décodeur. Nous ne rentrerons pas dans les détails de son architecture, mais nous vous proposons les lectures "Attention Is All You Need" \cite{a_i_a_y_n} et "Understanding and Coding Self-Attention, Multi-Head Attention, Cross-Attention, and Causal-Attention in LLMs" \cite{und_code_sa} pour appréhender le mécanisme d'attention croisée présent dans la partie décodeur du modèle.
+
+ 
+\subsection{Le modèle BERT}
+
+Nous avons vu précédemment l’architecture des modèles Transformers, leur arrivée a bouleversé les manières de traiter les séquences de données comme le texte et les images. Les résultats qu'ils offrent sont impressionnants et leur marge de progression reste à venir. Dans cette partie, nous allons présenter le premier modèle de Transformers de type encodeur ayant fait sensations dans le milieu du NLP. Il s’agit du modèle BERT (Bidirectional Encoder Representations from Transformers) proposé par les équipes de Google en octobre 2018. Nous présenterons rapidement l’architecture de BERT base pour ensuite accentuer notre présentation sur le pré-entraînement du modèle de manière auto-supervisée. Enfin, nous proposerons quelques tâches pour lesquelles ce modèle pré-entraîné a pu être finetuné et dont les évaluations des résultats ont été probantes. Nous tenons aussi à souligner qu’au travers de nos lectures, nous avons intégré l’importance du pré-entraînement d’un modèle. L’architecture des Transformers, bien qu’innovante, n’est pas la seule clé de réussite. La qualité des données et leur quantité sont également cruciales. De plus, trouver une bonne manière de pré-entraîner un modèle reste un facteur majeur dans l’essor de celui-ci. Nous proposons de détailler dans les deux prochaines parties, les points majeurs que nous avons compris de l'article de référence sur le sujet : "Pre-training of Deep Bidirectional Transformers for
+Language Understanding" \cite{bert_paper}
+
+\subsubsection{Architecture du modèle BERT}
+
+Comme nous les avons présentés dans la section précédente,le modèle BERT s’inscrit dans la catégorie des modèles Transformeurs du type encodeurs. Le modèle $BERT_{base}$ prend $n=512$ vecteurs en entrée et retourne $n$ vecteurs en sortie. Il se compose de $L=12$ blocs de Transformers empilés (Transformers layers). Chaque bloc possède une multi-têtes d’attention comportant $h=12$ têtes. Les modèles basés sur BERT utilisent le tokenizer WordPiece qui a été développé par les équipes de Google. Les tables d'embeddings sont initialement aléatoires, les poids pour chaque embedding de token seront appris durant la phase d’entraînement du modèle. À l’inverse de tables préalablement fixées, cette pratique laisse la liberté au modèle de changer la représentation des "mots" dans l’espace $\mathbb{R}^{d_{model}}$ ($d_{model} = 768 = 2^8 \times 3$). L’affinement des représentations vectorielles des tokens à travers la table d'embeddings se fait au fur et à mesure de l’entraînement du modèle. Dans le cas du modèle BERT, le dictionnaire contient $n_{dico} = 30K$ tokens de référence. Chaque token admet une représentation dans $\{0,1\}^{n_{dico}}$ sous une forme one-hot encoding. Celle-ci peut être rattachée à son embedding dans la table du modèle via un produit matriciel $t_{i} \times W_{emb}$ où $W_{emb}$ est la matrice d'embeddings de dimension $n_{dico}$ lignes et $d_{model}$ colonnes.
+
+
+\subsubsection{Introduction de nouveaux tokens}
+
+Une des innovations des équipes de Google fut d'introduire des nouveaux tokens non associés à des chaînes de caractères textuelles et ayant leur propre représentation dans l'espace $\mathbb{R}^{d_{model}}$.  
+
+
+\begin{itemize}[$ $]
+	\item  $[MASK]$ \\
+	
+	Le \textit{token de masque} : il remplace de manière aléatoire certains tokens textuels, donnant ainsi au modèle l’information de masquage des tokens textuels initialement à cette place.\\
+	
+	\item  $[SEP]$\\
+	
+	Le \textit{token de séparation} : le modèle BERT a été conçu pour avoir une grande flexibilité face aux différents contenus textuels d’entrée. Le modèle peut recevoir un paragraphe ou encore un couple paragraphe A/paragraphe B (exemple : question/réponse). Pour séparer, si besoin, ces deux entités, le modèle possède un token de séparation.\\
+	
+	\item  $[PAD]$\\
+	
+	Le \textit{token de padding} : comme nous l’avons présenté précédemment, le paragraphe donné au modèle une fois tokenisé ne donne rarement le nombre $n=512$ de tokens attendu par le modèle. Il est ainsi possible de compléter l’input du modèle avec des tokens de padding, ayant leur propre représentation.\\
+	
+	\item  $[CLS]$\\
+	
+	Le \textit{token de classification} : l'innovation la plus remarquable a été d'introduire un token spécial de classification. Ce token, noté entre crochets [CLS], sera rajouté au début de chaque séquence passant par le modèle BERT. À la sortie du modèle, le premier token de sortie, que nous noterons $C$, pourra être utilisé par la suite comme un vecteur informatif pour des tâches de classification. L’idée à travers ce nouveau token était de trouver dans l’espace $\mathbb{R}^{d_{model}}$ une représentation « résumé » de la séquence d’entrée.\\	
+\end{itemize}
+
+\begin{rmq}
+	Le modèle BERT utilise comme nous l’avons vu dans la section précédente des embeddings de position. Pour différencier cependant l’appartenance au paragraphe A et au paragraphe B, des embeddings spécifiques aux deux paragraphes sont ajoutés au sein des embeddings de tokens et des embeddings de position.
+	
+\end{rmq}
+ \newpage
+ \begin{figure*}[!h]
+ 	\centering
+ 	\includegraphics*[scale=0.45]{images/input_bert.png}
+ 	\caption{Représentation de l'Input du modèle BERT issue de l'article \cite{bert_paper}}
+ \end{figure*}
+\subsubsection{Pré-entraînement du modèle BERT pour la classification}
+
+
+Dans un premier temps, le modèle BERT a été entraîné à comprendre le langage naturel, cette partie est essentielle et nécessite une grande quantité de données. Pour ce faire, les données issues d’un corpus de livres "BookCorpus"(800M de mots) 800M ainsi que l’ensemble des données textuelles issues de Wikipédia en anglais (2500M de mots) ont été utilisées. Pour les données présentées, la phase de pré-entraînement suit une méthode d'autosupervision probabiliste. \\
+
+
+\begin{defi} L'\textbf{autosupervision} est une technique d'apprentissage automatique où un modèle utilise des données non annotées pour créer ses propres étiquettes ou signaux d'entraînement. Cela permet au modèle de s'entraîner sans avoir besoin de données préalablement étiquetées par des humains.\\
+	
+\end{defi}
+
+
+
+L'approche du pré-entraînement du modèle BERT se fait via deux tâches de classification. La première est une classification multi-classe sur l’ensemble des mots du vocabulaire, la seconde est une classification binaire en lien avec la cohérence sémantique entre la phrase A et la phrase B. Des réseaux de neurones de type MLP (Multilayer Perceptron) sont rajoutés à la sortie du modèle Transformers. Une fonction softmax (ou sigmoïde) permet d’obtenir des probabilités. Pour $n = 512$ tokens en entrée, le token $[CLS]$ sera toujours le premier token du modèle. Un token $[SEP]$ sera rajouté après chaque fin de chaque paragraphe issue du corpus de référence. En sortie du modèle, le premier token $C\in\mathbb{R}^{d_{model}}$ sera un vecteur pivot pour effectuer la deuxième tâche de classification binaire durant le pré-entraînement. Pour tout indice $2\leq i\leq n$, le token $T_i$ de sortie sera associé au token $t_i$ que nous avons mis en entrée à l'indice $i$. La fonction de coût (loss function) utilisée pour l'entraînement des poids est l'entropie croisée. 
+
+\newpage 
+
+\begin{defi}
+	Pour $p$ et $q$ deux mesures de probabilités sur un même espace discret $\Omega$, l'entropie croisée entre $p$ et $q$ notée $H(p,q)$ est donnée par :
+	
+	$$H(p,q) = - \sum_{i=1}p_i\ln(q_i) = - \sum_{i=1}p_i\ln\left(\dfrac{q_i\times p_i}{p_i}\right) = - \sum_{i=1}p_i\ln(p_i) - \sum_{i=1}p_i\ln\left(\dfrac{q_i}{p_i}\right) = H(p) + D_{KL}\left(p||q\right) $$
+	
+	où $D_{KL}(p||q)$ est la divergence de Kullback-Leibler entre $p$ et $p$. La divergence de Kullback-Leibler est une application à valeur positive, non symétrique, qui induit une notion de proximité entre deux mesures de probabilité sur un même espace. 
+\end{defi} 
+
+\begin{rmq}
+	
+	La rétropropagation (Back propagation) implémentée via la méthode de descente de gradient, permet de faire évoluer les poids du modèle à chaque itération lors de la période d'entraînement. Une partie entière serait nécessaire pour expliquer le fonctionnement de l'optimiseur Adam qui est utilisé pour le pré-entraînement du modèle BERT. Nous ne développerons pas cette axe dans ce rapport.
+	
+\end{rmq}
+
+
+\textbf{Tâche 1 :} Modèle de langage masqué (MLM)
+
+Pour deux phrases A et B données en entrée du modèle, une partie des tokens textuels (15 \%) sont masqués de manière aléatoire. L’objet de cette tâche est de récupérer les tokens de sortie associés aux tokens masqués, afin de déduire le mot qui a été masqué. Dans 80 \% des cas de masquage pour un token, celui-ci est remplacé par le token [MASK]. Dans 10 \% des cas, le token n’est pas échangé et dans les 10 \% restants, le token est remplacé par un autre token tiré aléatoirement dans le dictionnaire de référence. Ce procédé est utilisé pour forcer le modèle à comprendre le contexte des prédictions des tokens sans forcément lui indiquer la présence du token [MASK]. Le réseau de neurones à la sortie du modèle BERT est une projection du vecteur de sortie afin de lui associer un mot dans le vocabulaire de référence.
+
+\begin{rmq}
+	Soit $D_{dico}$ la taille du dictionnaire et $k \in \Omega = \llbracket1,D_{dico}\rrbracket$. Pour $t^k$ un token masqué à l'indice $i_0$ dans la séquence de tokens $S = (t_1, t_2, \cdots, t_n)$, nous pouvons lui associer un coût lié à l’entropie croisée entre la probabilité cible $\delta_k$ (un Dirac en $k$ sur $\Omega$) et la mesure de probabilité $q$ retournée par le modèle BERT + MLP + Softmax. Pour $S$ fixée, la mesure de probabilité $q$ est une fonction des poids $W$ du modèle. Ainsi, l’entropie croisée entre la mesure de probabilité $\delta_k$ et la mesure de probabilité $q$ est une fonction convexe différentiable par rapport aux poids $W$ du modèle, donnée par l'expression suivante :
+	
+	$$W \longmapsto H(\delta_k, q(W))$$
+	
+	où :
+	\begin{align*}
+		H(\delta_k, q(W)) &= - \sum_{i=1}^{D_{dico}} \delta_k(i) \times \ln(q(W)(i))\\
+		&= -\ln(q(W)(k)) = 0 -\ln(q(W)(k))  \\
+		&= H(\delta_k) + D_{KL}\left(\delta_k \| q(W)\right)
+	\end{align*}
+	
+	La régularité de la fonction de perte permet d’utiliser des méthodes d’optimisation non linéaires, telles que la méthode de descente de gradient, afin de trouver les poids $W^*$ minimisant l'entropie croisée. Minimiser la fonction $W \mapsto H(P_i, Q_i(W))$ revient donc à trouver les poids minimisant la divergence de Kullback-Leibler entre les deux mesures de probabilité $\delta_k$ et $q(W)$. 
+	
+	En pratique, l'optimisation des poids se fait de manière itérative, sur plusieurs tokens masqués selon un certain "batch size" de séquences.
+\end{rmq}
+
+\textbf{Tâche 2 :} Cohérence sémantique entre deux phrases (NSP : next sentence prediction)
+
+La partie NSP consiste à fournir deux phrases A et B au modèle BERT, telles que la phrase B ne soit pas toujours la suite logique de la phrase A. 50 \% du temps, la phrase B est la suite logique de la phrase A et dans les 50 \% restants, la phrase B est une phrase choisie aléatoirement dans le corpus de référence. Le vecteur de sortie $C$ issu du token [CLS] est ensuite passé dans un réseau dense pour effectuer une tâche de classification binaire (1 = IsNext ou 0 = NotNext).
+
+\begin{rmq}
+	Cette étape simple, est décrite comme bénéfique dans l’article initial de BERT. Elle sera cependant remise en question avec l’arrivée du modèle RoBERTa dans l’article suivant p.5 : "RoBERTa: A Robustly Optimized BERT Pretraining Approach" \cite{robert}
+\end{rmq}
+
+
+ \begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.33]{images/pretrain_bert.png}
+	\caption{Représentation graphique du pré-entraînement du modèle BERT issue de l'article \cite{bert_paper}}
+\end{figure*}
+
+
+
+\subsubsection{Fine-tuning du modèle BERT pour des tâches de classification}
+
+Dans l’article de référence du modèle BERT, les phases de fine-tuning sont décrites comme rapides et relativement simples. Cette simplicité est due en grande partie à l'architecture de BERT, qui permet d'adapter facilement le modèle à diverses tâches de traitement du langage naturel (NLP) en ajoutant seulement quelques couches supplémentaires. 
+
+Un exemple de fine-tuning présenté dans l’article est le fine-tuning du modèle sur les tâches associées au benchmark GLUE. Le benchmark GLUE (General Language Understanding Evaluation) est un recueil de neuf tâches de classification et de régression qui évaluent la compréhension du langage naturel par les modèles. 
+
+Quelques exemples de tâches :
+
+\begin{itemize}
+	\item CoLA (Corpus of Linguistic Acceptability) : Prédire si une phrase est grammaticalement correcte.
+	\item SST-2 (Stanford Sentiment Treebank) : Analyser la polarité du sentiment (positif ou négatif) d'une phrase.
+	\item MRPC (Microsoft Research Paraphrase Corpus) : Déterminer si deux phrases sont des paraphrases.
+	\item STS-B (Semantic Textual Similarity Benchmark) : Évaluer la similarité sémantique entre deux phrases sur une échelle continue.
+	\item QQP (Quora Question Pairs) : Déterminer si deux questions posées sur Quora sont des doublons.
+	
+\end{itemize}
+
+Pour le fine-tuning du modèle BERT sur chacune de ces tâches, nous utilisons uniquement le résultat du token [CLS] à la sortie du modèle BERT (le premier token à la sortie du modèle). Ce token est conçu pour capturer l'information globale de la séquence d'entrée.
+
+Ce token [CLS] est ensuite passé dans un réseau de neurones dense (MLP) afin de prédire des probabilités via une fonction softmax ou sigmoïde, en fonction du caractère binaire ou multiclasse de la tâche. Cette pratique permet de réentraîner tous les poids du modèle, tout en bénéficiant de l’initialisation des poids issue du modèle pré-entraîné sur un large corpus de texte. Cela permet d'adapter rapidement le modèle à une nouvelle tâche spécifique avec un petit nombre d'époques d'entraînement (2 à 3 en général).
+
+\begin{rmq}
+	Les performances des modèles BERT ajustés par fine-tuning se sont avérées remarquables, notamment pour les tâches de classification. BERT atteint des scores élevés sur presque toutes les tâches du benchmark GLUE, le moins bon score étant sur la tache CoLA. En revanche, les modèles fine-tunés de BERT ne sont pas les modèles les plus adaptés pour la génération de contenu. Des modèles avec une architecture de transformeurs de type décodeur, comme GPT ou Llama, sont préférables pour ce genre de tâches. Ils sont spécifiquement conçus pour générer des séquences de texte de manière cohérente et fluide.
+\end{rmq}
+
+\section{Un moteur de recherche avec un modèle Transformers}
+
+\subsection{SBERT : un fine-tuning du modèle BERT pour obtenir des embeddings de phrases}
+
+%\subsection{Les modèles génératifs : les modèles de décodage}
+%\subsubsection{Architecture du modèle Mistral ou GPT}
+%\subsubsection{Phase de pré-entraînement du modèle}
+%\subsubsection{Fine-tuning pour la génération automatique de réponses}
+
+
+
+
 
 
 \section{Conclusion}

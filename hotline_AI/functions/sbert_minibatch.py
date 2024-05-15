@@ -92,13 +92,13 @@ if __name__ == '__main__':
 
     # Get all questions in a list
     questions = tickets_en.question.values.tolist()
-    questions = questions[:100] # for instance: limit to first 100 for demonstration
+    questions = questions[:5] # for instance: limit to first 100 for demonstration
 
     # Initialisation de la liste pour stocker les embeddings
     all_embeddings = []
 
     # process by batch to save RAM
-    batch_size = 64  # depends of your memory
+    batch_size = 2  # depends of your memory
 
     for start_index in tqdm(range(0, len(questions), batch_size)):
         # select the batch
@@ -110,6 +110,7 @@ if __name__ == '__main__':
         # Stock embeddings
         all_embeddings.extend(embeddings_batch) # extend caus ethe result is like this [[1,4,...,8]]
 
+    #print(all_embeddings[0])
     # Convert to a numpy object 
     all_embeddings = np.vstack(all_embeddings)
     print(f"shape of all embeddings: {all_embeddings.shape}")

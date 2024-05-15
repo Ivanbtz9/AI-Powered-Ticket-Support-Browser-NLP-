@@ -30,13 +30,15 @@ def data_callbacks(app,tickets_assist,model,index):
         new_doc_embedding = model.encode([newdoc], convert_to_tensor=True).cpu().numpy().astype(np.float32)
         faiss.normalize_L2(new_doc_embedding)  # normalisation, norme = 1
 
-        K = 10000  # nb of neighbourgs
+        K = 30000  # nb of neighbourgs
         D, I = index.search(new_doc_embedding, K)  # D: Distances (cosine similarity), I: index
 
-        new_data = tickets_assist.iloc[I[0]].copy() 
-        new_data['score'] = D[0].round(2)
-        columns = [{'name': i, 'id': i, 'type': table_type(new_data[i])} for i in new_data.columns]
+        new_data = tickets_assist.iloc[I[0]].copy()
+        new_data['score'] = np.round(D[0], decimals=2)
+        new_data = new_data.applymap(lambda x: f"{x:.2f}" if isinstance(x, float) else x)
 
+        columns = [{'name': i, 'id': i, 'type': table_type(new_data[i])} for i in new_data.columns]
+        #print(new_data.to_dict('records'))
         return new_data.to_dict('records'), columns
 
     return dash.no_update

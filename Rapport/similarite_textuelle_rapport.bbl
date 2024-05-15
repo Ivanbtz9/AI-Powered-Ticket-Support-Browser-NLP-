@@ -1,5 +1,16 @@
 \begin{thebibliography}{10}
 
+\bibitem{a_i_a_y_n}
+Attention is all you need.
+\newblock \url{https://arxiv.org/abs/1706.03762}.
+\newblock Accédé le [10-05-2024].
+
+\bibitem{bert_paper}
+Bert: Pre-training of deep bidirectional transformers for language
+  understanding.
+\newblock \url{https://arxiv.org/pdf/1810.04805}.
+\newblock Accédé le [12-05-2024].
+
 \bibitem{CosineSimilarity}
 Cosine similarity.
 \newblock \url{https://www.learndatasci.com/glossary/cosine-similarity/}.
@@ -9,6 +20,12 @@ Cosine similarity.
 Distributed representations of words and phrases and their compositionality.
 \newblock \url{https://arxiv.org/pdf/1310.4546}.
 \newblock Accédé le [7-05-2024].
+
+\bibitem{openai_gpt}
+Improving language understanding by generative pre-training.
+\newblock
+  \url{https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf}.
+\newblock Accédé le [14-05-2024].
 
 \bibitem{TF_IDF_measures}
 An information-theoretic perspective of tf–idf measures.
@@ -42,6 +59,23 @@ Research-paper recommender systems: a literature survey.
 \newblock
   \url{https://kops.uni-konstanz.de/entities/publication/861ddd16-fbc6-4ee4-a77f-6bba081041f3}.
 \newblock Accédé le [08-02-2024].
+
+\bibitem{robert}
+Roberta: A robustly optimized bert pretraining approach.
+\newblock \url{https://arxiv.org/pdf/1907.11692}.
+\newblock Accédé le [15-05-2024].
+
+\bibitem{video_trans}
+Seq. 08 / transformers.
+\newblock \url{https://www.youtube.com/watch?v=L3DGgzIbKz4&t=3666s}.
+\newblock Accédé le [12-05-2024].
+
+\bibitem{und_code_sa}
+Understanding and coding self-attention, multi-head attention, cross-attention,
+  and causal-attention in llms.
+\newblock
+  \url{https://magazine.sebastianraschka.com/p/understanding-and-coding-self-attention}.
+\newblock Accédé le [14-05-2024].
 
 \bibitem{video_embedding}
 Video (min 18) : What are transformer models and how do they work?
