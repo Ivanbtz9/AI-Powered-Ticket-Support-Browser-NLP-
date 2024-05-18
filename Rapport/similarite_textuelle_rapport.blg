@@ -3,6 +3,10 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: similarite_textuelle_rapport.aux
 The style file: plain.bst
 Database file #1: bibliographie.bib
+Repeated entry---line 128 of file bibliographie.bib
+ : @misc{sts
+ :          ,
+I'm skipping whatever remains of this entry
 Warning--to sort, need author or key in BPE
 Warning--to sort, need author or key in Wordpiece
 Warning--to sort, need author or key in wordpiecehuggingface
@@ -20,45 +24,47 @@ Warning--to sort, need author or key in video_trans
 Warning--to sort, need author or key in openai_gpt
 Warning--to sort, need author or key in und_code_sa
 Warning--to sort, need author or key in robert
-You've used 17 entries,
+Warning--to sort, need author or key in sbert
+Warning--to sort, need author or key in sts
+You've used 19 entries,
             2118 wiz_defined-function locations,
-            562 strings with 6448 characters,
-and the built_in function-call counts, 2869 in all, are:
-= -- 286
-> -- 17
+            569 strings with 6677 characters,
+and the built_in function-call counts, 3205 in all, are:
+= -- 320
+> -- 19
 < -- 0
-+ -- 18
++ -- 20
 - -- 0
-* -- 87
-:= -- 331
-add.period$ -- 50
-call.type$ -- 17
-change.case$ -- 51
+* -- 97
+:= -- 369
+add.period$ -- 56
+call.type$ -- 19
+change.case$ -- 57
 chr.to.int$ -- 0
-cite$ -- 34
-duplicate$ -- 119
-empty$ -- 392
+cite$ -- 38
+duplicate$ -- 133
+empty$ -- 438
 format.name$ -- 0
-if$ -- 712
+if$ -- 796
 int.to.chr$ -- 0
-int.to.str$ -- 17
+int.to.str$ -- 19
 missing$ -- 0
-newline$ -- 87
+newline$ -- 97
 num.names$ -- 0
-pop$ -- 171
+pop$ -- 191
 preamble$ -- 1
-purify$ -- 34
+purify$ -- 38
 quote$ -- 0
-skip$ -- 85
+skip$ -- 95
 stack$ -- 0
-substring$ -- 86
-swap$ -- 17
+substring$ -- 96
+swap$ -- 19
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 68
-warning$ -- 17
+type$ -- 76
+warning$ -- 19
 while$ -- 0
-width$ -- 19
-write$ -- 153
-(There were 17 warnings)
+width$ -- 21
+write$ -- 171
+(There was 1 error message)

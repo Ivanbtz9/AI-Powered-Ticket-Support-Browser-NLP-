@@ -65,10 +65,20 @@ Roberta: A robustly optimized bert pretraining approach.
 \newblock \url{https://arxiv.org/pdf/1907.11692}.
 \newblock Accédé le [15-05-2024].
 
+\bibitem{sbert}
+Sentence-bert: Sentence embeddings using siamese bert-networks.
+\newblock \url{https://arxiv.org/abs/1908.10084}.
+\newblock Accédé le [17-05-2024].
+
 \bibitem{video_trans}
 Seq. 08 / transformers.
 \newblock \url{https://www.youtube.com/watch?v=L3DGgzIbKz4&t=3666s}.
 \newblock Accédé le [12-05-2024].
+
+\bibitem{sts}
+Sts benchmark (semantic textual similarity).
+\newblock \url{https://paperswithcode.com/dataset/sts-benchmark}.
+\newblock Accédé le [17-05-2024].
 
 \bibitem{und_code_sa}
 Understanding and coding self-attention, multi-head attention, cross-attention,

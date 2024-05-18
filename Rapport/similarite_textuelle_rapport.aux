@@ -24,14 +24,14 @@
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \babel@aux{french}{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Tokenization, embeddings et similarité}{3}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Tokenization et embeddings}{3}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Normalisation}{3}{subsection.2.1}\protected@file@percent }
 \citation{BPE}
-\citation{Wordpiece}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Dictionnaire ou tokenization}{4}{subsection.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Tokenisation basée sur les espaces et la ponctuation}{4}{subsubsection.2.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Tokenisation en sous-mots}{4}{subsubsection.2.2.2}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces  : Byte Pair Encoding (BPE)}}{4}{algorithm.1}\protected@file@percent }
+\citation{Wordpiece}
 \citation{wordpiecehuggingface}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces  : Wordpiece}}{5}{algorithm.2}\protected@file@percent }
 \citation{openai_tokenizer}
@@ -62,8 +62,9 @@
 \citation{a_i_a_y_n}
 \citation{bert_paper}
 \citation{video_trans}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Mécanisme d'attention pour le deep learning}{19}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Mécanisme d'attention dans le deep learning}{19}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Les modèles Transformers de type encodage}{19}{subsection.4.1}\protected@file@percent }
+\citation{a_i_a_y_n}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Données d'entrée : embeddings et positional encoding}{20}{subsubsection.4.1.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Représentation graphique des vecteurs de positions avec $d_{model} = 768$ et $n=512$}}{20}{figure.7}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Schéma représentatif des entrées et sorties d'un modèle Transformer type encoder}}{21}{figure.8}\protected@file@percent }
@@ -95,6 +96,40 @@
 \citation{bert_paper}
 \@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Représentation graphique du pré-entraînement du modèle BERT issue de l'article \cite  {bert_paper}}}{33}{figure.15}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.4}Fine-tuning du modèle BERT pour des tâches de classification}{34}{subsubsection.4.2.4}\protected@file@percent }
+\citation{sbert}
+\citation{sts}
+\citation{sts}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Un moteur de recherche avec un modèle Transformers}{35}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}SBERT : un fine-tuning du modèle BERT pour obtenir des embeddings de phrases}{35}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}BERT et les embeddings de phrase}{35}{subsubsection.5.1.1}\protected@file@percent }
+\citation{sts}
+\citation{sts}
+\citation{sbert}
+\citation{sbert}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Tableau des évaluations sur les datasets de STS \cite  {sts}}}{36}{figure.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}SBERT un modèle finetuné de BERT via la méthode des réseaux siamois}{36}{subsubsection.5.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Architecture du modèle siamois durant l'entraînement du modèle SBERT pour des tâches de classifications \cite  {sbert}}}{36}{figure.17}\protected@file@percent }
+\citation{sbert}
+\citation{sbert}
+\citation{sbert}
+\citation{sts}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Architecture du modèle siamois durant l'entraînement du modèle SBERT pour des tâches de régressions \cite  {sbert}}}{37}{figure.18}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Tableau d'évaluations sur différents datasets \cite  {sts}}}{37}{figure.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Une évaluation difficile des performance}{37}{subsubsection.5.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Une application suivant les besoins métiers}{38}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Fonctionnement du moteur de recherche}{38}{subsubsection.5.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Vue principale du Dashboard sans utiliser le moteur de recherche}}{39}{figure.20}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Résultat du moteur de recherche pour une demande client sur un kit alarme}}{39}{figure.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Construction de l'application}{39}{subsubsection.5.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Les pratiques MLOps }{40}{subsubsection.5.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Améliorations :}{40}{subsubsection.5.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Déploiement :}{41}{subsubsection.5.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Maintenance :}{41}{subsubsection.5.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{41}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pré-réponses automatiques avec un modèle génératif : }{42}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Utilisation des données sur les pièces machines : }{42}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Amélioration de la normalisation des questions : }{42}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Perspectives futures : }{42}{section.6}\protected@file@percent }
 \bibstyle{plain}
 \bibdata{bibliographie}
 \bibcite{a_i_a_y_n}{{1}{}{{}}{{}}}
@@ -108,17 +143,16 @@
 \bibcite{BPE}{{9}{}{{}}{{}}}
 \bibcite{openai_tokenizer}{{10}{}{{}}{{}}}
 \bibcite{etude2015}{{11}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Un moteur de recherche avec un modèle Transformers}{35}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}SBERT : un fine-tuning du modèle BERT pour obtenir des embeddings de phrases}{35}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{35}{section.6}\protected@file@percent }
 \bibcite{robert}{{12}{}{{}}{{}}}
-\bibcite{video_trans}{{13}{}{{}}{{}}}
-\bibcite{und_code_sa}{{14}{}{{}}{{}}}
-\bibcite{video_embedding}{{15}{}{{}}{{}}}
-\bibcite{word2vec}{{16}{}{{}}{{}}}
-\bibcite{wordpiecehuggingface}{{17}{}{{}}{{}}}
+\bibcite{sbert}{{13}{}{{}}{{}}}
+\bibcite{video_trans}{{14}{}{{}}{{}}}
+\bibcite{sts}{{15}{}{{}}{{}}}
+\bibcite{und_code_sa}{{16}{}{{}}{{}}}
+\bibcite{video_embedding}{{17}{}{{}}{{}}}
+\bibcite{word2vec}{{18}{}{{}}{{}}}
+\bibcite{wordpiecehuggingface}{{19}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\newlabel{LastPage}{{}{36}{}{page.36}{}}
-\xdef\lastpage@lastpage{36}
-\xdef\lastpage@lastpageHy{36}
-\gdef \@abspage@last{36}
+\newlabel{LastPage}{{}{44}{}{page.44}{}}
+\xdef\lastpage@lastpage{44}
+\xdef\lastpage@lastpageHy{44}
+\gdef \@abspage@last{44}

@@ -17,8 +17,8 @@ import faiss
 
 from tqdm import tqdm
 
-from pages.main_layout import serve_layout
-from callbacks.callbacks1 import data_callbacks,export_csv_callbacks
+from pages.main_layout import *
+from callbacks.callbacks1 import *
 from functions.sbert_minibatch import *
 
 if __name__ == '__main__':
@@ -68,8 +68,10 @@ if __name__ == '__main__':
     app.layout = serve_layout(tickets_assist)
 
     ###callbacks
-    data_callbacks(app,tickets_assist,model,index) 
     export_csv_callbacks(app)
+    reset_filters_table(app)
+    table_callbacks(app, tickets_assist, model, index)
+
 
     #run application
     app.run_server(debug=True)
@@ -105,10 +107,6 @@ réponse :
 
 4) how can i find the correct part number for the alarm module
 
-5) Bonjour, 
-
-Pourriez vous me dire, s'il existe une référence pour le pupitre bas complet encadré sur la pièce jointe ? S'il vous plait
-160 ATJ E3
 
 ###########################
 

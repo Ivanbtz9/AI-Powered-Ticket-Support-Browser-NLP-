@@ -111,8 +111,8 @@
 	Cette recherche s'inscrit dans un contexte où l'efficacité de la gestion des tickets est directement liée à la qualité du service offert par le CLPR. En développant un outil capable de réduire significativement le temps nécessaire à la recherche d'informations, ce projet entreprend la transformation des opérations quotidiennes en apportant une réponse concrète aux défis posés par le volume et la complexité des tickets traités. Nous souhaiterions ainsi améliorer des performances opérationnelles du CLPR mais aussi développer les connaissances dans le domaine du traitement automatique du langage naturel appliqué à un environnement professionnel.	
 
 	
-	\section{Tokenization, embeddings et similarité}
-	Les données textuelles dans leur forme brute, ne sont pas directement exploitables par les modèles de machine learning. Pour permettre la classification de textes, la génération de résumé, ou encore l'analyse de similarité entre deux documents, il est essentiel de prétraiter ces données afin de les convertir en vecteurs numériques. Nous décrirons dans cette première partie les principales étapes de ce prétraitement. Commençons par la normalisation des données, cette étape est cruciale car elle permet de nettoyer les données. Comment pouvons nous obtenir un texte sous une forme canonique ? Vient ensuite la segmentation (Tokenization) qui consiste à structurer les données pour créer un dictionnaire de valeurs textuelles. Cette étape est particulièrement complexe et peut varier selon les méthodes employées. Nous examinerons certains aspects sans rentrer explicitement dans les détails de toutes les méthodes existantes. La dernière partie consiste en la vectorisation, l'encodage des données (embedding) pour obtenir une représentation vectorielle de chaque Token. Nous finirons par présenter la similarité cosinus qui est une métrique permettant d'identifier la proximité entre deux vecteurs.
+	\section{Tokenization et embeddings}
+	Les données textuelles dans leur forme brute, ne sont pas directement exploitables par les modèles de machine learning. Pour permettre la classification de textes, la génération de résumé, ou encore l'analyse de similarité entre deux documents, il est essentiel de prétraiter ces données afin de les convertir en vecteurs numériques. Nous décrirons dans cette première partie les principales étapes de ce prétraitement. Commençons par la normalisation des données, cette étape est cruciale car elle permet de nettoyer les données. Comment peut-on obtenir un texte sous une forme canonique ? Vient ensuite la segmentation (Tokenization) qui consiste à structurer les données pour créer un dictionnaire de valeurs textuelles. Cette étape est particulièrement complexe et peut varier selon les méthodes employées. Nous examinerons certains aspects sans rentrer explicitement dans les détails de toutes les méthodes existantes. La dernière partie consiste en la vectorisation, l'encodage des données (embedding) pour obtenir une représentation vectorielle de chaque Token. Nous finirons par présenter la similarité cosinus qui est une métrique permettant d'identifier la proximité entre deux vecteurs.
 	\subsection{Normalisation}
 	La normalisation des données joue un rôle essentiel dans la réduction de la taille du vocabulaire. La conversion de tout le texte en minuscules, par exemple, permet d'unifier les variantes d'un même mot (comme "Hello" et "hello"). Cette opération peut cependant masquer certains sens implicites ou nuances. Prenons l'exemple de : "I am waiting for my parts URGENTLY". Le passage en minuscules dilue le sentiment d'urgence et l'impatience du message envoyé par notre client. Par conséquent, une connaissance métier des données est importante pour la normalisation des données textuelles.  
 	
@@ -178,7 +178,6 @@
 		\caption{Étapes pour la tokenization}
 	\end{figure*}
 
-\newpage
 
 \begin{rmq}
 	Quand on demande à ChatGPT de nous donner le tokenizer qu'il utilise, il nous répond : \\[1cm]
@@ -538,17 +537,17 @@ De plus, la dimensionnalité des embeddings créés par TF-IDF est directement l
 
 Pour surmonter ces limites, des techniques plus avancées comme les modèles basés sur les Transformers peuvent être envisagées. Ces méthodes prennent en compte le contexte des mots et génèrent des embeddings de dimension réduite, ce qui améliore la gestion de la sémantique.
 
-\section{Mécanisme d'attention pour le deep learning}
+\section{Mécanisme d'attention dans le deep learning}
 
 Dans cette partie, nous aborderons les réseaux de neurones du type \emph{Transformer} pour le traitement des données séquentielles. Nous traiterons des données textuelles grâce à des méthodes de deep learning basées sur le mécanisme d'attention présenté dans l'article "Attention is All You Need" \cite{a_i_a_y_n}. Contrairement aux réseaux de neurones récurrents (RNN) qui traitent aussi des données séquentielles en tenant compte de l'ordre d'arrivée des tokens et en utilisant un processus de mémoire, les modèles Transformer traitent les séquences dans leur ensemble sans prendre en compte l'ordre initial des tokens dans la phrase. Une innovation clé de ce type de modèle est le mécanisme d'attention que nous décrirons en détail plus loin dans ce rapport. De plus, l'architecture des Transformers a été conçue pour permettre la parallélisation des calculs, un avantage non disponible avec des RNN tels que les LSTM et les GRU. Nous pouvons classer les modèles de type Transformer en trois catégories : les modèles d'encodage uniquement tels que "BERT", les modèles de décodage uniquement tels que "GPT", et les modèles combinant encodeur et décodeur comme celui présenté dans l'article "Attention is All You Need". Nous commencerons notre présentation des modèles de type Transformer par les modèles encodeur, bien que cette approche ne suive pas l'ordre chronologique de leur développement.
 
 \subsection{Les modèles Transformers de type encodage}
-Le premier modèle de type Transformer a été proposé en 2017 et présenté dans l’article "Attention is All You Need" \cite{a_i_a_y_n}. Son architecture repose sur une combinaison d'un encodeur et d'un décodeur en utilisant un empilement de blocs d’attention. Nous choisirons dans ce rapport de présenter les modèles de type encodeur simple, ils offrent une représentation bidirectionnelle des données textuelles qui sera utile pour construire un moteur de recherche sur les tickets Assist. Nos explications suivantes reposes sur la lecture des articles : "Attention is All You Need" \cite{a_i_a_y_n} et de l'article "BERT: Pre-training of Deep Bidirectional Transformers for
+Le premier modèle de type Transformer a été proposé en 2017 et présenté dans l’article "Attention is All You Need" \cite{a_i_a_y_n}. Son architecture repose sur une combinaison d'un encodeur et d'un décodeur en utilisant un empilement de blocs d’attention. Nous choisirons dans ce rapport de présenter les modèles de type encodeur simple, ils offrent une représentation bidirectionnelle des données textuelles qui sera utile pour construire un moteur de recherche sur les tickets Assist. Nos explications suivantes reposent sur la lecture des articles : "Attention is All You Need" \cite{a_i_a_y_n} et de l'article "BERT: Pre-training of Deep Bidirectional Transformers for
 Language Understanding" \cite{bert_paper}. La vidéo "Seq. 08 / Transformers" proposée par les équipes de l'IDRIS \cite{video_trans} nous a aussi beaucoup inspirée et aidée dans la rédaction des parties suivantes.
 
 \subsubsection{Données d'entrée : embeddings et positional encoding}
 
-Avant de rentrer dans l'architecture du modèle en lui même, considérons-le d'abord comme une boîte noire et concentrons-nous sur les données d’entrée et de sortie de celui-ci. Pour une séquence de tokens (des "mots" dans notre cas), nous allons utiliser une table d'embeddings fournie par le modèle lui-même pour convertir chaque token en un vecteur de taille fixe ($d_{model}$ = 768, dans le cas d’un BERT de base). À l’inverse des modèles récurrents qui traitent les tokens séquentiellement, les Transformers manipulent directement une séquence de taille fixe ( $n=512$ pour un BERT de base). Pour conserver une notion de position des tokens dans le séquence, une solution a été d'introduire des embeddings positionnels de la même taille $d_{model}$. Ces embeddings positionnels sont combinés aux embeddings de tokens pour former l'entrée du modèle grâce à une addition deux à deux. Une technique d'encodage positionnel que nous proposons est celle présentée dans l'article "Attention is All You Need". Elle utilise des fonctions cosinus et sinus comme présenté ci dessous :  
+Avant de rentrer dans l'architecture du modèle en lui même, considérons-le d'abord comme une boîte noire et concentrons-nous sur les données d’entrée et de sortie de celui-ci. Pour une séquence de tokens (des "mots" dans notre cas), nous allons utiliser une table d'embeddings fournie par le modèle lui-même pour convertir chaque token en un vecteur de taille fixe ($d_{model}$ = 768, dans le cas d’un BERT de base). À l’inverse des modèles récurrents qui traitent les tokens séquentiellement, les Transformers manipulent directement une séquence de taille fixe ( $n=512$ pour un BERT de base). Pour conserver une notion de position des tokens dans la séquence, une solution a été d'introduire des embeddings positionnels de la même taille $d_{model}$. Ces embeddings positionnels ($PE$ : positional encoding) sont combinés aux embeddings de tokens pour former l'entrée du modèle grâce à une addition deux à deux. Une technique d'encodage positionnel que nous proposons est celle présentée dans l'article "Attention is All You Need". Elle utilise des fonctions cosinus et sinus comme présenté ci dessous :  
 
 $$PE_{(pos,j)} = \ \left\{\begin{array}{c}
 	\sin\left(pos/10^{4 \times \frac{2 \times\lfloor \frac{j}{2} \rfloor}{d_{model}}} \right) \quad \text{si  : } j \equiv 0 ~[2]\\\quad\\
@@ -557,22 +556,22 @@ $$PE_{(pos,j)} = \ \left\{\begin{array}{c}
 
 		\begin{figure*}[!h]
 	\centering
-	\includegraphics*[scale=0.25]{images/positional_embedding.png}
+	\includegraphics*[scale=0.3]{images/positional_embedding.png}
 	\caption{Représentation graphique des vecteurs de positions avec $d_{model} = 768$ et $n=512$}
 \end{figure*}
 
 \begin{rmq}
-	Ce type d’encodage pourrait aider le modèle à mieux interpréter les séquences translaté d'un facteur $k$
+	Ce type d’encodage pourrait aider le modèle à mieux interpréter les séquences translaté d'un facteur $k$ \cite{a_i_a_y_n}.
 \end{rmq}
 
-Le modèle renvoie ensuite une séquence de nouveaux vecteurs, qui peuvent être considérés comme de nouvelles variables ("hidden states" ou "features") enrichies des informations de la séquence initiale. Ils contiennent des représentations intégrées des interactions entre tous les éléments de la séquence d'entrée grâce au mécanisme d'attention.
+Une fois les embeddings passés au travers du modèle, celui-ci renvoie une séquence de nouveaux vecteurs qui peuvent être considérés comme de nouvelles variables ("hidden states" ou "features") enrichies des informations de la séquence initiale. Ces vecteurs de sortie contiennent des représentations intégrées des interactions entre tous les éléments de la séquence d'entrée grâce au mécanisme d'attention.
 
 \begin{figure*}[!h]
 	\centering
 	\includegraphics*[scale=0.29]{images/Transformer_encoder.png}
 	\caption{Schéma représentatif des entrées et sorties d'un modèle Transformer type encoder}
 \end{figure*}
-
+\newpage 
 \begin{rmq}
 	Certaines phrases plutôt courtes, une fois tokenisées, ne remplissent pas nécessairement le nombre maximal de tokens que le modèle peut recevoir en entrée. Pour pallier à ce manque de tokens, il est possible de rajouter du padding, ce qui permet de combler ce vide. Le token de padding (« PAD ») possède son propre embedding qui sera également appris durant l'entraînement du modèle. L'introduction de nouveaux tokens est une pratique que nous aurons l'occasion de revoir dans la présentation du modèle BERT.   
 \end{rmq}
@@ -590,9 +589,11 @@ Rentrons maintenant dans les détails d'un réseau de neurones Transformer de ty
 
 \begin{figure*}[!h]
 	\centering
-	\includegraphics*[scale=0.25]{images/bloc_transformer.png}
+	\includegraphics*[scale=0.2]{images/bloc_transformer.png}
 	\caption{Schéma représentatif des N blocs de Transformer mis bout à bout}
 \end{figure*}
+
+
 
 \subsubsection{Mécanisme d'attention et multi-têtes}
 
@@ -615,7 +616,7 @@ Le mécanisme d'attention prend en compte la séquence entière de vecteurs et l
  Une fois les matrices \(K\), \(Q\) et \(V\)  obtenues, il y a un produit matriciel entre \(Q\) et \(K^T\) normalisé par \(\sqrt{d_k}\). Ceci nous permettra d'obtenir une matrice que nous noterons \(M_{\text{sca}}\), elle correspond à la matrice des produits scalaires entre les vecteurs \(Q_{i,:}\) et \(K_{j,:}\) qui sont des représentations différentes des vecteurs initiaux dans l'espace $\R^{d_k}$.
 
 \begin{rmq}
-	La normalisation par un facteur \(\sqrt{d_k}\) est présentée dans l'article \textit{"Attention Is All You Need}" \cite{a_i_a_y_n}, elle a été introduite dans le but d'améliorer les phases d'entraînement du modèle en diminuant l'amplitude des valeurs prisent dans la matrice \(QK^T\). Cette pratique permet de ne pas écraser certaines valeurs de la matrice \(M_{\text{sca}}\) par le passage au Softmax à l'étape suivante. En effet, lorsque la dimension $d_k$ augmente, l'apprentissage du modèles sans normalisations perd en stabilité \cite{a_i_a_y_n}. 
+	La normalisation par un facteur \(\sqrt{d_k}\) est présentée dans l'article \textit{"Attention Is All You Need}" \cite{a_i_a_y_n}, elle a été introduite dans le but d'améliorer les phases d'entraînement du modèle en diminuant l'amplitude des valeurs prises dans la matrice \(QK^T\). Cette pratique permet de ne pas écraser certaines valeurs de la matrice \(M_{\text{sca}}\) par le passage au Softmax à l'étape suivante. En effet, lorsque la dimension $d_k$ augmente, l'apprentissage du modèles sans normalisations perd en stabilité \cite{a_i_a_y_n}. 
 	
 	Nous proposons ici de développer la remarque en bas de page 4 de l'article \textit{"Attention Is All You Need}" \cite{a_i_a_y_n} : 
 	
@@ -627,7 +628,7 @@ Le mécanisme d'attention prend en compte la séquence entière de vecteurs et l
 		&\mathbb{E}\left[\langle K[i,:] , Q[j,:]\rangle\right] = \sum_{l=1}^{d_k} \mathbb{E}\left[K_{il} \times Q_{jl}\right] = \sum_{l=1}^{d_k} \mathbb{E}\left[K_{il} \right] \times \mathbb{E}\left[ Q_{jl}\right] = 0\\\\
 		&\mathbb{V}\left[\langle K[i,:] , Q[j,:]\rangle\right] = \mathbb{E}\left[\langle K[i,:] , Q[j,:]\rangle^2\right] = \sum_{l=1}^{d_k}\sum_{s=1}^{d_k} \mathbb{E}\left[K_{il} \times K_{is} \times Q_{jl}\times Q_{js}\right] \\
 		& = \sum_{l=s}^{d_k} \mathbb{E}\left[K_{il}^2 \right] \times \mathbb{E}\left[ Q_{jl}^2\right] +  \sum_{l\neq s}^{d_k} \mathbb{E}\left[K_{il}\right] \times \mathbb{E}\left[K_{is}\right]\times \mathbb{E}\left[Q_{il}\right]\times \mathbb{E}\left[ Q_{js}\right] = \sum_{l=s}^{d_k} 1 +  \sum_{l\neq s}^{d_k} 0 = d_k\\ \\
-		&\mathbb{V}\left[\dfrac{\langle K[i,:] , Q[j,:]\rangle}{\sqrt{d_k}}\right] = \dfrac{1}{\sqrt{d_k}} \times \mathbb{V}\left[\langle K[i,:] , Q[j,:]\rangle\right] = 1
+		&\mathbb{V}\left[\dfrac{\langle K[i,:] , Q[j,:]\rangle}{\sqrt{d_k}}\right] = \dfrac{1}{d_k} \times \mathbb{V}\left[\langle K[i,:] , Q[j,:]\rangle\right] = 1
 	\end{align*}
 
 
@@ -657,9 +658,8 @@ Chaque ligne de la matrice \(M_{\text{sca}}\) passe ensuite par la fonction Soft
 
 
 
-
 \begin{rmq}
-	Il est possible de rajouter un masque à droite avant le passage à la fonction softmax. Cette pratique constitue la principale distinction entre un modèle Transformers de type encodeur et un modèle Transformers de type décodeur. Dans le cas d'un modèle Transformers de type encodeur, nous parlons d'un bloc d'attention bidirectionnel, tandis que dans un modèle Transformers de type décodeur, nous parlons d'un bloc d'attention masqué unidirectionnel.  Pour ce faire, il suffit d'ajouter à la matrice \(M_{\text{sca}}\), une matrice triangulaire strictement supérieure avec des valeurs de \(-\infty\) et des zéros sur la partie inférieure. Après application de la fonction softmax sur les lignes, les poids strictement au-dessus de la diagonale seront tous égaux à zéro. Cette opération force le mécanisme d'attention à ne pas prendre les tokens de droite pour déterminer les poids contextuels. Ce procédé de masquage dans les matrices d'attention est la principale différence d'architecture entre un modèle Transformers de type encodeur (BERT) et un modèle Transformers de type décodeur (GPT).
+	Il est possible de rajouter un masque à droite (\emph{"Mask otion"}) avant le passage à la fonction softmax. Cette pratique constitue la principale distinction entre un modèle Transformers de type encodeur et un modèle Transformers de type décodeur. Dans le cas d'un modèle Transformers de type encodeur, nous parlons d'un bloc d'attention bidirectionnel, tandis que dans un modèle Transformers de type décodeur, nous parlons d'un bloc d'attention masqué unidirectionnel.  Pour ce faire, il suffit d'ajouter à la matrice \(M_{\text{sca}}\), une matrice triangulaire strictement supérieure avec des valeurs de \(-\infty\) et des zéros sur la partie inférieure. Après application de la fonction softmax sur les lignes, les poids strictement au-dessus de la diagonale seront tous égaux à zéro. Cette opération force le mécanisme d'attention à ne pas prendre les tokens de droite pour déterminer les poids contextuels. Ce procédé de masquage dans les matrices d'attention est la principale différence d'architecture entre un modèle Transformers de type encodeur (BERT) et un modèle Transformers de type décodeur (GPT).
 	
 \end{rmq}
 
@@ -668,7 +668,7 @@ Chaque ligne de la matrice \(M_{\text{sca}}\) passe ensuite par la fonction Soft
 \end{rmq}
 
 \begin{rmq}
-	Il ne faut pas confondre le procédé de masquage dans la construction de la matrice d'attention avec l'introduction d'un token \textit{"MASK"} que nous présenterons lors du pré-entraînement du modèle BERT.
+	Il ne faut pas confondre le procédé de masquage dans la construction de la matrice d'attention (\emph{Masked Multi-Head Attention}) avec l'introduction d'un token \textit{"MASK"} que nous présenterons lors du pré-entraînement du modèle BERT.
 \end{rmq}
 
 
@@ -852,7 +852,155 @@ Ce token [CLS] est ensuite passé dans un réseau de neurones dense (MLP) afin d
 
 \section{Un moteur de recherche avec un modèle Transformers}
 
+Nous avons montré dans une première partie comment nous pouvions comparer la similarité entre deux documents grâce à une approche fréquentielle (TF-IDF). Dans cette partie, nous allons utiliser un modèle spécialement conçu pour créer des embeddings de phrases grâce à la technologie des réseaux de neurones Transformers.
+
 \subsection{SBERT : un fine-tuning du modèle BERT pour obtenir des embeddings de phrases}
+
+Le modèle SBERT est une version fine-tunée du modèle BERT, employant la méthode des réseaux de neurones siamois. Dans cette section, nous reprenons les résultats exposés dans l'article de référence du modèle SBERT : "Sentence Embeddings using Siamese BERT-Networks" \cite{sbert}. Les scores obtenus par ce modèle sur certains datasets benchmarks comme STS \cite{sts}, dépassent les résultats des modèles précédents comme le modèle Universal Sentence Encoder. Depuis l'arrivée des réseaux de neurones Transformers, les tâches de NLP qui consistent à comparer des phrases n'utilisent plus des approches fréquentielles comme la méthode TF-IDF.
+
+\subsubsection{BERT et les embeddings de phrase}
+Nous pourrions nous poser la question suivante : \textit{comment obtenir une vectorisation d’une séquence de Tokens via les sorties vectorielles du modèle BERT ?}
+
+Rappelons que BERT prend $n=512$ vecteurs en entrée et renvoie $n=512$ vecteurs en sortie. Une première idée, qui fonctionne plutôt mal en pratique, serait de prendre le vecteur barycentrique (MEAN) issu des $n$ sorties du modèle BERT. Une autre approche, encore moins performante dans les faits, serait d’utiliser le token \texttt{[CLS]} à la sortie du modèle BERT pour en déduire un vecteur de référence pour chaque phrase. Malheureusement, ces approches donnent des scores d’évaluation sur les datasets issus de STS \cite{sts} inférieurs en comparaison avec des modèles spécialisés (ex : Universal Sentence Encoder). Le tableau suivant montre que les sorties d’un modèle BERT ne permettent pas directement d’obtenir une représentation pertinente d’une phrase par un simple "pooling" des sorties, le fine tuning est donc nécessaire.
+\newpage
+
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.27]{images/table_bert.png}
+	\caption{Tableau des évaluations sur les datasets de STS \cite{sts}}
+\end{figure*}
+
+\subsubsection{SBERT un modèle finetuné de BERT via la méthode des réseaux siamois}
+L’idée du modèle SBERT est de fine-tuner simultanément deux modèles BERT pré-entraînés, à l’aide de la méthode des réseaux siamois. Cela revient à constituer une architecture en parallèle avec deux modèles BERT et d'entraîner symétriquement les poids des deux modèles sur une tâche de classification consistant à prendre des couples de phrases et à renvoyer des labels de similarité. Au lieu de traiter deux phrases dans un seul modèle, comme peut le faire le modèle BERT avec le token \texttt{[SEP]}, le premier modèle BERT (A) traitera uniquement la première phrase (A), et le deuxième modèle BERT (B) traitera uniquement la deuxième phrase (B). À la sortie des deux modèles, une phase de "pooling" sera ajoutée pour transformer les sorties séquentielles en un unique vecteur. Cette phase de "pooling" sera potentiellement la moyenne des vecteurs, le token \texttt{[CLS]} (premier vecteur de sortie) ou le max des coefficients sur chacun des vecteurs de sortie. Notons $u$ et $v$ les deux vecteurs de sortie des deux blocs siamois, une étape de concaténation \footnote{La concaténation peut être variable, celle utilisée sera la concaténation du vecteur $u$ , $v$  et $|u-v|$ } sera rajouté avant de passer ce nouveaux vecteur dans un réseaux dense suivi d'une couche Softmax. Le modèle siamois sera entraîné pour une tâche de classification sur le dataset SNLI \cite{sts} avec la fonction de perte d'entropie croisée. La rétropropagation du gradient fera évoluer les poids de manière symétrique au fil de l’entraînement du modèle siamois. Une fois l’entraînement terminé, il suffit de garder l’un des deux modèles (BERT (A) par exemple) et le bloc de "pooling" pour obtenir une représentation vectorielle d'une phrase.
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.3]{images/sbert_siamois.png}
+	\caption{Architecture du modèle siamois durant l'entraînement du modèle SBERT pour des tâches de classifications \cite{sbert}}
+\end{figure*}
+
+\newpage
+\begin{rmq}
+	Plusieurs phases d’entraînement du modèle SBERT sont présentées dans l’article de référence \cite{sbert}. L'entraînement des poids du modèle se fait aussi sur des tâches de régression en utilisant la similarité cosinus entre les vecteurs $u$ et $v$ en sortie. Nous supposons qu’une transformation affine du segment $[-1, 1]$ pourrait être effectuée pour fournir des valeurs plus étendues (exemple : un segment inclus dans $\mathbb{R}$). Pour une phase d’entraînement à l’aide du dataset STSb, chaque paire de phrases se voit attribuer un score de similarité compris entre 0 et 5.
+	
+	
+	\begin{figure*}[!h]
+		\centering
+		\includegraphics*[scale=0.3]{images/sbert_cos.png}
+		\caption{Architecture du modèle siamois durant l'entraînement du modèle SBERT pour des tâches de régressions \cite{sbert}}
+	\end{figure*}
+\end{rmq}
+
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.28]{images/sbert_table1.png}
+	\caption{Tableau d'évaluations sur différents datasets \cite{sts}}
+\end{figure*}
+
+\subsubsection{Une évaluation difficile des performance}
+Il est important de noter que l'évaluation générale de la qualité des embeddings de phrases issus d'un modèle reste une tâche complexe. Une évaluation possible se réalise grâce à des datasets benchmarks, de manière supervisée sur des tâches de classification ou de régression pour des paire de phrases. Le modèle peut ainsi comparer deux phrases via une tâche de classification (par exemple, évaluer si les phrases sont en contradiction, en implication ou neutres), ou encore produire un score de similarité pour une tâche de régression supervisée. Dans le cadre de notre projet, pour créer un moteur de recherche sur les tickets Assist, nous utiliserons la similarité cosinus afin d'évaluer la proximité de deux phrases vectorisées. Le moteur de recherche que nous développerons pour les questions des clients sera basé sur les embeddings fournis par le modèle SBERT. Nous aurons également besoin de l'expertise d'une personne spécialisée sur le support technique pour pouvoir évaluer la qualité des résultats renvoyés par le moteur de recherche.
+
+\begin{rmq}
+	
+	Nous pourrions, avec les collaborateurs métier, constituer un dataset contenant des paires de questions clients, en attribuant une note de similarité allant de 0 à 5. Ces données annotées nous permettraient de mettre en place une méthode d'évaluation basée sur une tâche de classification utilisant des métriques telles que l'accuracy, le F1-score ou encore l'aire sous la courbe ROC. Il serait alors possible d'évaluer de manière rigoureuse la qualité des embeddings de questions générées par le modèle SBERT pour notre secteur d'activité. Ce dataset nous permettrait non seulement de quantifier la performance du modèle en termes de précision des similarités calculées, mais aussi d'affiner les paramètres du modèle pour améliorer ses prédictions en conditions réelles via un possible fine-tuning.
+	
+	
+\end{rmq}
+
+\subsection{Une application suivant les besoins métiers}
+
+Le manager du service technique du CLPR nous a contacté pour initier la construction d'un moteur de recherche spécifique pour ses activités. Toutes les équipes du plateau partagent le même outil de ticketing, ce qui rend les recherches spécialisées pour le service technique longues en raison de la volumétrie de tous les tickets. Il a remarqué que les besoins des clients sont souvent les mêmes, bien que la formulation de ceux-ci change pour chaque ticket et que les mots employés dépendent de l'interlocuteur. L'idée d'un moteur de recherche capable de comparer la similarité textuelle d'un nouveau ticket avec la base de tous les anciens tickets lui semblait une bonne piste de travail.
+
+Nous avons ainsi développé une application web avec une interface utilisateur simple et utilisant un modèle Transformers de NLP en backend. Nous avons développé la totalité de notre application en Python, qui permet le traitement des données, il possède aussi de nombreuses bibliothèques pour le machine learning (PyTorch, Huggingface, etc.). Nous avons également utilisé Dash, un framework open-source en Python, pour construire des applications web interactives et analytiques. Dash est particulièrement populaire pour créer des tableaux de bord interactifs et des visualisations de données.
+ 
+\subsubsection{Fonctionnement du moteur de recherche}
+
+L'interface du moteur de recherche que nous avons développée est relativement simple. Une table comportant tous les tickets est présentée au centre de l’application. La table centrale contient par colonne des zones pour filtrer sur chacune des lignes. Une zone de texte au-dessus de la table principale permet d’écrire une nouvelle question client et de l'envoyer via le bouton "Load" au modèle SBERT pour être vectorisée. Une recherche sur les 30 000 plus proches voisins est alors réalisée en quelques secondes grâce l'index Faiss, les résultats de recherche sont ensuite ordonnés avec un score de similarité cosinus. Un bouton "Reset Filter" permet de réinitialiser les filtres et un bouton "Reset" permet de retrouver l’ensemble des tickets.
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.28]{images/appli1.png}
+	\caption{Vue principale du Dashboard sans utiliser le moteur de recherche}
+\end{figure*}
+
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics*[scale=0.28]{images/appli2.png}
+	\caption{Résultat du moteur de recherche pour une demande client sur un kit alarme}
+\end{figure*}
+
+\subsubsection{Construction de l'application}
+
+Nous présentons dans cette partie les étapes principales du développement de l’application précédemment mentionnée. Initialement, nous avons reçu des données brutes (questions/réponses) des clients issues de différentes langues au format Excel. Ces tableaux de données, allant de janvier 2021 à mars 2024, proviennent d’extractions du logiciel de ticketing Assist. La première partie de notre travail a consisté à homogénéiser les données textuelles par des méthodes REGEX. Une traduction en anglais de tous les tickets a également été proposée pour faciliter l'emploi international de l'outil. Pour ce faire, nous avons utilisé l’API Google "Deep Translator".
+
+\newpage 
+
+\begin{rmq}
+	 Les versions originales sont toujours disponibles dans la table finale même si elles ne sont pas affichées à l’écran via l’application. Nous avons fait des tests unitaires sur les traductions et la qualité nous semble satisfaisante. Cependant, des vérifications par des équipes spécialisées seraient nécessaires.
+\end{rmq}
+
+Google Colab est l’outil que nous avons utilisé pour charger le modèle SBERT via Huggingface. Après avoir mis nos données sur le drive, nous avons pu vectoriser toutes les questions afin d'obtenir des embeddings. Nous avons chargé l’ensemble de ces vecteurs dans une instance FAISS. La bibliothèque FAISS est idéale pour manipuler des données vectorielles conséquentes (plus de 120 000 questions dans notre cas). Cette bibliothèque propose une instance "index" qui permet de stocker et d’effectuer des recherches des plus proches voisins rapidement pour des métriques telles que la distance euclidienne, la distance de Manhattan ou encore celle que nous avons utilisée, la similarité cosinus. La vectorisation de toutes les questions clients a pris environ 10 minutes sur un processeur GPU NVIDIA A100. Nous avons ensuite téléchargé l'index pour le connecter à l’application développée sous Dash. Les volumes de données n’étant pas trop conséquents, nous avons pu utiliser la bibliothèque Pandas pour manipuler nos tableaux de valeurs. Pour chaque nouvelle question client, nous utilisons le modèle SBERT chargé au lancement de l’application pour la vectoriser. Une opération de recherche des 30 000 plus proches voisins est alors exécutée en quelques secondes, comme nous avons pu le voir précédemment grâce à l’index de la bibliothèque FAISS.
+
+\subsubsection{Les pratiques MLOps }
+
+Les pratiques MLOps (Machine Learning Operations) visent à standardiser et automatiser le cycle de vie du développement des modèles de machine learning, de leur déploiement à leur maintenance. Pour notre application de moteur de recherche basé sur SBERT, nous pourrions intégrer ces pratiques en mettant en place une pipeline MLOps complète. Cela inclurait l'automatisation du prétraitement des données et de la gestion des versions des modèles. En intégrant les pratiques MLOps, nous améliorerions l'efficacité du développement, assurerions la reproductibilité des résultats et faciliterions la collaboration entre les équipes de data science et de développement.
+
+\paragraph{Améliorations :}
+
+Afin d'améliorer continuellement notre moteur de recherche, nous envisageons plusieurs pistes :
+
+\begin{itemize}
+	\item \textbf{Affinage du modèle} : En fonction des retours utilisateurs, nous pourrions affiner le modèle SBERT via des séances de fine-tuning supplémentaires sur des datasets plus spécifiques à notre domaine d'activité. Cela permettrait d'améliorer la précision des embeddings et de mieux répondre aux questions des clients.
+	\item \textbf{Optimisation de l'interface utilisateur} : En fonction des retours utilisateurs, une interface plus moderne et réactive améliorerait leur expérience de l'application.
+
+\end{itemize}
+
+\paragraph{Déploiement :}
+
+Le déploiement de notre application nécessite plusieurs étapes clés pour garantir son bon fonctionnement et son accessibilité :
+
+\begin{itemize}
+	\item \textbf{Environnement de production} : Préparer un environnement de production stable en utilisant des outils tels que Docker pour conteneuriser notre application et faciliter son déploiement sur différents serveurs.
+	\item \textbf{CI/CD} : Mettre en place une pipeline d'intégration continue et de déploiement continu (CI/CD) pour automatiser les ajouts des nouvelles questions questions client, l'automatisation des tests et le déploiement. Cela permettrait de déployer rapidement et en toute sécurité les nouvelles versions de l'application.
+	\item \textbf{Hébergement} : Choisir une solution d'hébergement fiable et évolutive (par exemple, AWS, Google Cloud ou Azure) pour héberger notre application et garantir sa disponibilité et sa performance.
+	\item \textbf{Sécurité} : Assurer la sécurité de notre application en implémentant des protocoles de sécurité tels que HTTPS, en gérant les accès et en surveillant les vulnérabilités.
+\end{itemize}
+
+\paragraph{Maintenance :}
+
+Pour garantir la pérennité et la performance de notre application, un plan de maintenance régulier est essentiel :
+
+\begin{itemize}
+	\item \textbf{Mises à jour} : Effectuer régulièrement des mises à jour du modèle et des bibliothèques utilisées pour bénéficier des dernières améliorations. S'assurer que les nouvelles mis à jour des bibliothèques n'altèrent pas le fonctionnement de l'application.    
+	\item \textbf{Augmentation des données} : Enrichir notre dataset en y intégrant de nouvelles questions et réponses régulièrement. Plus le dataset sera riche et varié, plus le modèle sera performant.
+\end{itemize}
+
+En suivant ces étapes d'améliorations, de déploiement et de maintenance, nous nous assurons que notre moteur de recherche basé sur SBERT reste performant, fiable et adapté aux besoins de notre secteur d'activité.
+
+\section{Conclusion}
+
+Au vu des premiers retours métier, ce projet démontre l'efficacité d'un moteur de recherche basé sur les modèles Transformers, en particulier SBERT. Cette technologie répond aux besoins spécifiques des équipes CLPR et s'inscrit dans une démarche innovante d'intégration de solutions d'intelligence artificielle dans l'industrie. En utilisant la vectorisation des phrases et des mesures de similarité, nous avons pu améliorer la recherche de tickets, rendant l'accès aux informations plus rapide et pertinent. Pour aller plus loin, nous envisageons plusieurs améliorations significatives :
+
+\paragraph{Pré-réponses automatiques avec un modèle génératif : }
+L'intégration d'un modèle génératif tel que GPT, LLaMA ou encore Mistral, pourrait permettre de fournir des pré-réponses automatiques aux questions des clients. En fine-tunant ce modèle sur notre dataset spécifique de questions et réponses, nous pourrions améliorer la pertinence des réponses proposées. Ce modèle génératif pourrait être utilisé en complément du moteur de recherche, offrant ainsi une assistance proactive et réduisant le temps de réponse des équipes.
+
+\paragraph{Utilisation des données sur les pièces machines : }
+Une future amélioration consistera à intégrer une base de données complète sur les pièces composant chaque machine. Cette base de données, actuellement en cours de constitution, permettra d'enrichir les réponses aux questions des clients en fournissant des informations précises et détaillées sur les pièces détachées. L'accès rapide à ces données techniques pourra grandement faciliter le travail des équipes techniques. Un lien avec les niveaux de stock et les statuts des pièces est un idéal vers lequel nous aimerions tendre.
+
+\paragraph{Amélioration de la normalisation des questions : }
+Nous prévoyons de reprendre la normalisation des questions pour éliminer les répétitions et gérer les informations sur les pièces jointes. Une uniformisation des noms de machines est également nécessaire pour garantir une cohérence et une précision accrues dans les recherches via les filtres. La collaboration avec un expert métier sera essentielle pour uniformiser les questions et les réponses, assurant ainsi une qualité optimale des données traitées.
+
+\paragraph{Perspectives futures : }
+
+En intégrant ces axes d'amélioration, notre moteur de recherche évoluera vers une solution encore plus performante et adaptée aux besoins des utilisateurs. L'automatisation des réponses, l'enrichissement des données techniques et l'amélioration continue de la qualité des données textuelles contribueront à faire de notre outil un atout pour le CLPR. La collaboration avec des experts métier et l'utilisation de technologies de pointe en NLP permettront de maintenir cette application à la pointe de l'innovation, assurant ainsi une satisfaction maximale des utilisateurs.
+
+En conclusion, ce projet constitue une étape importante vers l'optimisation des opérations du CLPR, et les améliorations envisagées ouvriront de nouvelles perspectives pour une gestion toujours plus efficace des tickets et des interactions avec les clients.
+
+
+\newpage
 
 %\subsection{Les modèles génératifs : les modèles de décodage}
 %\subsubsection{Architecture du modèle Mistral ou GPT}
@@ -864,7 +1012,7 @@ Ce token [CLS] est ensuite passé dans un réseau de neurones dense (MLP) afin d
 
 
 
-\section{Conclusion}
+
 
 \bibliographystyle{plain}
 \bibliography{bibliographie}

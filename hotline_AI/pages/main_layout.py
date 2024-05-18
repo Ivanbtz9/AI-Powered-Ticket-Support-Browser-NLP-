@@ -76,7 +76,33 @@ def serve_layout(tickets_assist):
                         'cursor': 'pointer',
                         'outline': 'none',
                         'fontSize': '16px'}
-                )
+                ),
+                html.Button('Reset Filters', id='reset-filters-button', n_clicks=0,
+                    style={
+                        'backgroundColor': '#D46A6A',  # Red shade
+                        'color': 'white',
+                        'height': '50px',
+                        'padding': '8px 20px',
+                        'border': 'none',
+                        'borderRadius': '5px',
+                        'cursor': 'pointer',
+                        'outline': 'none',
+                        'fontSize': '16px',
+                        'marginLeft': '10px'  # Maintain a small space between Load and Reset buttons
+                    }),
+                html.Button('Reset', id='reset-data-button', n_clicks=0,
+                    style={
+                        'backgroundColor': '#28a745',  # green apple
+                        'color': 'white',
+                        'height': '50px',
+                        'padding': '8px 20px',
+                        'border': 'none',
+                        'borderRadius': '5px',
+                        'cursor': 'pointer',
+                        'outline': 'none',
+                        'fontSize': '16px',
+                        'marginLeft': '10px'  # Maintain a small space between Load and Reset buttons
+                    })
                 ],
             style={
             'margin': 20,
@@ -119,14 +145,16 @@ def serve_layout(tickets_assist):
                 sort_action='native',
                 sort_mode='multi'
                 ),
-                html.Div(style={'marginTop': '90px'})], # make a space between the table and the other part 
+                html.Div(style={'marginTop': '10px'})], # make a space between the table and the other part 
                 style={
-                    'margin': 20,
+                    'margin': 15,
                     'padding': '20px',
                     'justifyContent': 'space-between'
                     }),
             html.Div([html.Button('export CSV', id='export-csv-button',style={
-                        'color': 'black',
+                        'backgroundColor': '#1434A4', # Egyptian blue
+                        'color': 'white',
+                        #'color': 'black',
                         'height': '50px',
                         'weight' : '80px',
                         'padding': '10px 10px',
@@ -135,7 +163,87 @@ def serve_layout(tickets_assist):
                         'outline': 'none',
                         'fontSize': '16px'}),
                     dcc.Download(id='download-csv'),
-                ])           
+                ]),
+            html.Div(style={'marginTop': '90px'}),
+        #    html.Div(id='layout1_flexbox_title_AI',
+        #        children=[
+        #            html.Div(id='layout1_Conteneur_title_AI',
+        #                    children=[
+        #                    html.H1(
+        #                        children=["Answering with a generative AI"],
+        #                        style={
+        #                            'color': '#1434A4',  # Egyptian blue
+        #                            'fontSize': 35
+        #                        }
+        #                    ),
+        #                    html.P(
+        #                        children=["Please use this information carefully, as the model may generate inaccurate or misleading responses."],
+        #                        style={
+        #                            'color': '#000000',  # Black
+        #                            'fontSize': 18  # font 
+        #                        }
+        #                    ),
+        #                ],
+        #                style={'flex': 1}  # take space but not to much, keep space for the picture
+        #            ),
+        #            # Conteneur for the picture
+        #            html.Div(
+        #                children=[
+        #                    html.Img(src='assets/mistral_7b.jpg', style={'height': '125px', 'width': 'auto'}) # load a picture from the asset folder
+        #                ],
+        #                style={'flex': 'none','padding': '10px 10px'}  # Do not extend the image more than its necessary size
+        #            )
+        #        ],
+        #        style={
+        #        'margin': 20,
+        #        'padding': '20px',
+        #        'fontFamily': 'Arial, sans-serif',
+        #        'borderRadius': '15px',
+        #        'boxShadow': '0px 0px 10px #aaaaaa',
+        #        'display': 'flex', 
+        #        'alignItems': 'center',
+        #        'borderRadius': '8px',
+        #        'justifyContent': 'space-between'
+        #        }
+        #    ),
+        #    html.Div([
+        #        dcc.Textarea( 
+        #            id='layout1_input_text_AI',
+        #            placeholder='Please, enter your question...',
+        #            style={
+        #                'width': '90%', 
+        #                'height': '100px',
+        #                'padding': '0px 5px',
+        #                'margin': '0px 30px',  
+        #                'border': '1px solid #ccc',
+        #                'borderRadius': '8px',
+        #                'box-sizing': 'border-box'  
+        #            }
+        #        ),
+        #        html.Button('Load to Mistral 7B', id='layout1_load_button_AI', n_clicks=0, # create a button to run the query
+        #            style={
+        #                'backgroundColor': '#ee9f27', # orange
+        #                'color': 'white',
+        #                'height': '50px',
+        #                'padding': '8px 50px',
+        #                'border': 'none',
+        #                'borderRadius': '5px',
+        #                'cursor': 'pointer',
+        #                'outline': 'none',
+        #                'fontSize': '16px'}
+        #        )
+        #        ],
+        #    style={
+        #    'margin': 20,
+        #    'padding': '20px',
+        #    'borderRadius': '15px',
+        #    'display': 'flex', 
+        #    'alignItems': 'center',
+        #    'borderRadius': '8px',
+        #    'justifyContent': 'space-between'
+        #    }),
+        #html.Div(style={'marginTop': '90px'}), 
+                  
         ],
         style={
                 'alignItems': 'center',
@@ -143,3 +251,9 @@ def serve_layout(tickets_assist):
                 }
     )
     return layout1
+
+
+
+
+
+
