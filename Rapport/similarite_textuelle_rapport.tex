@@ -213,10 +213,6 @@
 
 
 
-
-
-
-
 	\subsubsection{Word2vec}
 	
 	Les méthodes de type Word2Vec \cite{word2vec} reposent sur le principe suivant : les mots apparaissant régulièrement à proximité les uns des autres dans un corpus partagent un sens sémantique similaire. Ainsi, ils doivent être représentés par des vecteurs proches les uns des autres selon une certaine métrique (ex : la similarité cosinus). Pour obtenir des représentations vectorielles pour chaque token, nous allons utiliser la matrice des poids $W_1$ de la première couche d'un réseau de neurones de type MLP entraîné sur des tâches de classification. Le réseau de neurones est entraîné à prédire un ou plusieurs mots selon la tâche de classification. La fonction de perte d'entropie croisée sert à évaluer les prédictions à travers un coût et permet d'ajuster les poids du modèle via la rétro-propagation du gradient.

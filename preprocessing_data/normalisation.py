@@ -39,7 +39,7 @@ def clean_question_answer(text_from):
     text_from = re.sub('http\S+\s*', ' ', text_from)  # remove URLs
     text_from = re.sub('#\S+', '', text_from)  # remove hashtags
     text_from = re.sub('@\S+', ' ', text_from)  # remove mentions
-    text_from = re.sub('[%s]' % re.escape(""""%#$£%&*§+,-<=>@[\]^_`{|}~"""), ' ', text_from)  # remove punctuations
+    text_from = re.sub('[%s]' % re.escape(""""%#$£%&*§+,-<=>@[\]^_`{|}~"""), '', text_from)  # remove punctuations
     text_from = re.sub(r'\xa0', ' ', text_from) # delete insecable space
     text_from = re.sub('\s+', ' ', text_from).strip()  # remove extra whitespace
     text_from = text_from.lower() #change to lowercase
